@@ -24,7 +24,7 @@
 **Reference sections — read these before starting this phase:**
 - PRD: § Technical Architecture, § Data Model, § Auth Implementation, § Dependencies & Integrations
 - Vision: § Brand Strategy (Voice & Tone Guide)
-- Design: `docs/design.md` (token YAML + § Colors, § Typography, § Layout, § Components) — **note: this file does not exist yet. Run the Design System skill before styling work. Until then, use neutral placeholder tokens and the alkatera example report as a visual reference (dark cover, light interior, lime-green accent, serif headings, monospace labels).**
+- Design: `docs/design.md` (token YAML + § Colors, § Typography, § Layout, § Components); human-readable mirror at `docs/design.html`. Light, paper-toned, ink-led system — serif display (Playfair), sans body (Inter), mono labels (IBM Plex Mono), lime highlight, metallic tier badges. Wire these tokens into `tailwind.config.ts` in Phase 0 (TASK-001).
 
 **Phase prompt — give this to your coding agent:**
 > "Read docs/product-roadmap.md and find Phase 0. Then read only the Reference sections listed above from docs/prd.md and docs/product-vision.md. Continue from the first unchecked task. After each task, mark it complete in the roadmap. When all tasks are done, create a branch `phase-0/foundation-and-setup`, commit, push, and open a PR for review."

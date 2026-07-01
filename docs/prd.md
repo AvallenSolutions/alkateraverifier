@@ -1,6 +1,6 @@
 # PRD — alkatera LCA Verifier
 
-> Visual tokens not yet defined. Run the Design System skill to generate `docs/design.md` before UI implementation begins. The example alkatera LCA report is a strong visual reference (dark cover, light interior, lime-green accent, serif display headings, monospace labels).
+> Visual tokens are defined in `docs/design.md` (with a live mirror in `docs/design.html`): a light, paper-toned, ink-led system with editorial serif display (Playfair), sans body (Inter), mono labels (IBM Plex Mono), a restrained lime highlight, and a metallic five-band certification-tier scale. Reference token names from `docs/design.md` throughout; do not redefine visual values here.
 
 ## 1. Overview
 
@@ -483,7 +483,7 @@ Related Stories: US-006
 
 ## 8. UI/UX Requirements
 
-> Visual tokens not yet defined. Run the Design System skill before implementation begins. Reference component names from `docs/design.md`.
+> Visual tokens are defined in `docs/design.md` (see § Components for `button-primary`, `card`, `badge-tier-*`, `finding-*`, `nav-item-active`, etc.). Reference those component and token names rather than re-describing styling.
 
 ### Screen: Landing
 Route: `/`
