@@ -6,7 +6,7 @@
 
 ### Product Summary
 
-**alkatera LCA Verifier** — Independent LCA verification that shows its working. The Verifier ingests a Life Cycle Assessment from any platform, checks it against the international standards the user selects, re-cross-checks its core calculations, and returns a tiered certification (Bronze / Silver / Gold) with a plain-English, clause-by-clause findings list. Every grade is traced to the exact standard and clause behind it. It is platform-agnostic, low-cost, and fiercely transparent, and it will fail alkatera's own reports when they fall short.
+**alkatera LCA Verifier** — Independent LCA verification that shows its working. The Verifier ingests a Life Cycle Assessment from any platform, checks it against the international standards the user selects, re-cross-checks its core calculations, and returns a tiered certification (Bronze / Silver / Gold / Platinum) with a plain-English, clause-by-clause findings list. Every grade is traced to the exact standard and clause behind it. It is platform-agnostic, low-cost, and fiercely transparent, and it will fail alkatera's own reports when they fall short.
 
 ### Objective
 
@@ -190,7 +190,7 @@ CREATE TABLE verifications (
   status VARCHAR(30) NOT NULL DEFAULT 'pending', -- pending|extracting|evaluating|complete|failed
   extraction JSONB,                      -- structured LCA data
   extraction_confidence NUMERIC,         -- 0..1
-  tier VARCHAR(20),                      -- 'bronze'|'silver'|'gold'|null
+  tier VARCHAR(20),                      -- 'not_certified'|'bronze'|'silver'|'gold'|'platinum'|null
   score NUMERIC,                         -- 0..100
   is_paid BOOLEAN NOT NULL DEFAULT FALSE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -333,7 +333,7 @@ Acceptance Criteria:
 **US-003: See a transparent result**
 As Sophie, I want a clear tier and clause-by-clause findings so that I know where my LCA stands and what to fix.
 Acceptance Criteria:
-- [ ] Given processing completes, when I open the result, then I see a Bronze/Silver/Gold tier and a score.
+- [ ] Given processing completes, when I open the result, then I see a certification band (Not Certified / Bronze / Silver / Gold / Platinum) and a score.
 - [ ] Given the result, when I read any finding, then it shows the standard, clause, plain summary, reasoning, and (if not conforming) a recommendation.
 - [ ] Edge case: low extraction confidence → the result flags reduced reliability rather than asserting a false verdict.
 
@@ -390,10 +390,29 @@ Description: Recompute and reconcile core figures (e.g. GHG species total vs hea
 Acceptance Criteria: Mismatches beyond tolerance produce failed checks surfaced in the result.
 Related Stories: US-003
 
-**FR-006: Scoring and tiering**
+**FR-006: Scoring and tiering (gates + tiers)**
 Priority: P0
-Description: Roll findings and calculation checks into a 0–100 score and a Bronze/Silver/Gold tier via a transparent, documented rubric.
-Acceptance Criteria: A tier is never shown without its contributing findings; the rubric is deterministic given the same findings.
+Description: Determine the certification band via a two-stage, fully transparent rubric.
+
+Stage 1 — Gates (all must pass, else band = `not_certified`):
+- **Calculation integrity (HARD gate):** GHG species totals reconcile to the headline, lifecycle-stage impacts sum to the total, fossil/biogenic split is consistent, and net EoL = gross − credits, each within tolerance (default ±2%). Any breach → Not Certified, regardless of other strengths.
+- **Goal & scope integrity (ISO 14044 §4.2):** functional unit, system boundary, and cut-off criteria are present and internally consistent.
+- **No major methodological error:** correct GWP characterisation (e.g. IPCC AR6), no double counting, correct allocation basis/direction, biogenic/fossil handled per ISO 14067.
+
+Stage 2 — Tier (for studies that pass all gates):
+- **Bronze (baseline):** passes gates but has ≥1 major gap (typically data quality/completeness, e.g. 0% primary data or a material contributor on proxy data) or overall data quality below "Good". Suitable for internal use and hotspot identification, not strong public claims.
+- **Silver (robust):** no major gaps; at most minor gaps; overall data quality "Good"; material contributors (>1% of impact) backed by primary or high-confidence verified secondary data; uncertainty acknowledged.
+- **Gold (publication-grade):** zero major gaps and negligible minor gaps; high overall data quality — material contributors backed by primary data, or by high-quality verified secondary where primary is genuinely unavailable and pedigree (geographic/temporal/technological match) is strong ("primary-first, verified secondary OK"); formal uncertainty AND sensitivity analysis present; full impact-category coverage with justified exclusions (ISO 14044 §4.4.2.2).
+- **Platinum (best-in-class):** meets every Gold requirement AND **verified primary data covers ≥70% of total impact** (i.e. primary data on the contributors that together represent at least 70% of the footprint), with strong pedigree. Rewards studies that invested in genuine supplier-measured data rather than verified secondary proxies.
+
+Critical review (ISO 14044 §6): status is disclosed transparently on every result and does NOT gate Gold or Platinum. Every result carries a note that public comparative assertions still require independent §6 critical review, which this automated verification does not replace.
+
+Acceptance Criteria:
+- A calculation-integrity breach always yields `not_certified`, regardless of other strengths.
+- Any unresolved major gap caps the tier at Bronze.
+- Platinum requires all Gold criteria PLUS ≥70% of total impact backed by verified primary data; a study that meets Gold quality but falls below the 70% verified-primary threshold remains Gold.
+- A band is never shown without its contributing gates and findings.
+- The rubric is deterministic: identical findings and checks always yield the same band and 0–100 score.
 Related Stories: US-003
 
 **FR-007: Free vs paid gating**
@@ -639,7 +658,7 @@ PDF handling: a server-side PDF text/layout extraction library (e.g. `unpdf` or 
 ## 14. Open Questions
 
 - **How is the clause rules layer authored?** Options: (a) fully encoded per-clause deterministic checks, (b) LLM-driven evaluation guided by encoded clause descriptions, (c) hybrid. Tradeoff: determinism/auditability vs coverage/effort. Recommended default: hybrid — deterministic checks for calculation reconciliation and structural clauses, LLM-guided evaluation (with cited clause descriptions) for qualitative clauses, always requiring a citation.
-- **Exact tiering rubric.** How many/which major gaps cap a tier? Recommended default: any unresolved major gap caps at Bronze; zero major gaps + limited minor gaps = Silver; zero major, minimal minor, and strong data quality = Gold. Finalise with Tim given his LCA expertise.
+- **Tiering rubric — RESOLVED.** Two-stage rubric (gates → tiers) with a Not Certified band below Bronze and a Platinum band above Gold for studies with ≥70% verified primary data; calculation integrity is a hard gate; critical review is disclosed, not gated; Gold uses a primary-first, verified-secondary-allowed data-quality bar while Platinum rewards ≥70% verified primary data. See FR-006 for the full specification. Remaining calibration to confirm during build: the exact numeric tolerances (default ±2%), the data-quality band thresholds that separate "Good" (Silver) from "high" (Gold), and the precise basis for the Platinum ≥70% primary-data measure (share of total impact), to be tuned against the fixture suite.
 - **Paid unlock price point.** Recommended default: a low flat fee per verification (test £X in launch), consistent with the low-cost mandate; revisit with real conversion data.
 - **Liability wording of verdicts.** Needs legal review before public launch; default to strictly scoped language.
 - **Extraction library choice.** `unpdf` vs `pdf-parse` vs sending page images to Claude for vision-based extraction. Recommended default: text extraction first, fall back to vision-based extraction for image-heavy/complex layouts.

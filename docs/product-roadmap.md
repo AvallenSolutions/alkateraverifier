@@ -131,7 +131,7 @@
 
 ## Phase 2: Verification Engine & Transparent Results (Magic Moment)
 
-> **Goal:** The magic moment works end to end: upload → select standards → within minutes see a Bronze/Silver/Gold tier with a plain-English, clause-by-clause findings list and calculation cross-checks, every finding citing its standard and clause.
+> **Goal:** The magic moment works end to end: upload → select standards → within minutes see a certification band (Bronze / Silver / Gold / Platinum, or Not Certified) with a plain-English, clause-by-clause findings list and calculation cross-checks, every finding citing its standard and clause.
 
 **Reference sections — read these before starting this phase:**
 - PRD: § Data Model, § Functional Requirements (FR-004, FR-005, FR-006), § API Specification, § UI/UX Requirements (Result screen), § Non-Functional Requirements (Performance, Reliability), § Open Questions (rules layer, tiering rubric)
@@ -153,9 +153,9 @@
   Files: `src/lib/engine/evaluate.ts`
   Notes: For each selected clause, evaluate the extracted LCA and emit a finding: result (conforms/minor_gap/major_gap/insufficient_info), plain_summary, reasoning (must cite standard + clause), recommendation. Enforce the "never assert without a citation" invariant (FR-004). Verify: findings always carry a clause_ref.
 
-- [ ] **TASK-026** — Implement scoring and tiering rubric.
+- [ ] **TASK-026** — Implement the gates + scoring/tiering rubric.
   Files: `src/lib/engine/score.ts`
-  Notes: Deterministic rubric per PRD § Open Questions default: any unresolved major_gap caps at Bronze; zero major + limited minor = Silver; zero major + minimal minor + strong data quality = Gold. Produce 0–100 score. Verify: identical findings always yield the same tier/score.
+  Notes: Implement FR-006 exactly (two stages). Stage 1 gates: calculation integrity is a HARD gate → band = `not_certified` on any reconciliation breach (default ±2% tolerance); plus goal/scope integrity and no major methodological error. Stage 2 tiers: any unresolved major gap caps at Bronze; no major + minor-only + "Good" data quality = Silver; zero major + negligible minor + high data quality (primary-first, verified secondary OK) + formal uncertainty & sensitivity + full impact-category coverage = Gold; Gold quality PLUS ≥70% of total impact backed by verified primary data = Platinum. Critical review (§6) is disclosed, not gated. Produce a deterministic 0–100 score. Verify: the known-good example fixture (0% primary) lands at Bronze; a calc-mismatch fixture lands at `not_certified`; a fixture with ≥70% verified primary data and Gold-quality method reaches Platinum; identical inputs always yield the same band/score.
 
 - [ ] **TASK-027** — Build the verification worker route (orchestration).
   Files: `src/app/api/verify/process/route.ts`, `src/lib/engine/run.ts`
@@ -167,7 +167,7 @@
 
 - [ ] **TASK-029** — Build the Result page: tier badge, score, calculation panel, findings list.
   Files: `src/app/(app)/verify/[id]/page.tsx`, `src/components/features/TierBadge.tsx`, `src/components/features/FindingItem.tsx`, `src/components/features/CalcChecksTable.tsx`
-  Notes: Header shows TierBadge + score; expandable findings grouped by standard, each showing clause, plain summary, reasoning, recommendation; calculation checks table. Follow PRD § UI/UX (Result) and voice examples. Verify: opening a completed verification renders the full transparent verdict.
+  Notes: Header shows TierBadge + score; TierBadge must render all five bands (Not Certified / Bronze / Silver / Gold / Platinum) per FR-006. Expandable findings grouped by standard, each showing clause, plain summary, reasoning, recommendation; calculation checks table; a disclosed critical-review status line (not a gate) noting comparative assertions still need §6 review. Follow PRD § UI/UX (Result) and voice examples. Verify: opening a completed verification renders the full transparent verdict; a Not Certified result clearly shows which gate failed.
 
 - [ ] **TASK-030** — Add processing, low-confidence, and failed states to the Result page.
   Files: `src/app/(app)/verify/[id]/page.tsx`, `src/components/ui/Banner.tsx`
