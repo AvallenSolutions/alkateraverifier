@@ -1,0 +1,198 @@
+# Product Vision — alkatera LCA Verifier
+
+## 1. Vision & Mission
+
+### Vision Statement
+
+A world where every environmental claim on a product is backed by an LCA that has been independently verified, so that "sustainable" means something a buyer can trust.
+
+### Mission Statement
+
+To give any brand instant, low-cost, fiercely transparent verification of their LCA against the international standards they choose, with every grade traced to the exact clause it was checked against.
+
+### Founder's Why
+
+Tim built alkatera to produce LCAs for drinks brands, and in doing so ran head-first into the credibility gap that undermines the entire category. An LCA is only as trustworthy as its verification, yet formal ISO 14044 critical review is slow, expensive, inconsistent between reviewers, and opaque to the brands paying for it. The result is predictable: nearly every report ends up carrying a "Critical Review: Not Conducted" caveat, and brands are left choosing between making claims on shaky ground or paying thousands for a review they cannot easily interpret.
+
+Having generated hundreds of these studies, Tim knows precisely where LCAs go wrong: boundary choices that quietly exclude material impacts, allocation shortcuts, characterisation errors, biogenic and fossil carbon confusion, end-of-life credits that flatter the result, and above all data quality that cannot support the claim being made. That knowledge is the product. The verifier encodes an expert's eye for failure into something a brand can run in minutes.
+
+The strategic insight is that this should not be limited to alkatera's own reports. By verifying LCAs from any platform or consultancy, alkatera positions itself as the independent, trusted authority for the whole market, and drives a stream of brands who discover they need a better LCA back to the platform that can build them one.
+
+### Core Values
+
+- **Show your working, always.** Every grade, pass, and failure is traced to the specific standard and clause it was checked against. The product never issues a black-box score. If we cannot explain why, we do not assert it.
+- **Independent before agreeable.** The verifier's value comes from being willing to fail a study, including one produced by alkatera itself. Credibility is the asset, and it is spent the moment we soften a finding to please a customer.
+- **Plain English on top of hard rigour.** The methodology is exacting and standards-bound; the output a brand reads is jargon-free and immediately actionable. Both are non-negotiable, and neither is allowed to erode the other.
+- **Low cost by design.** This service exists to support alkatera users and drive traffic, not to maximise margin. Every architecture and pricing decision is measured against whether it keeps the product cheap to run and cheap to buy.
+- **On the side of credible claims.** We are explicitly anti-greenwashing. When a claim is not supported by the data, the product says so, because that is the entire reason it deserves to exist.
+
+### Strategic Pillars
+
+- **Platform-agnostic from day one.** The verifier must handle an LCA from any source, not just alkatera. This is what makes it a trusted independent authority rather than a marketing feature.
+- **Transparency is the moat.** Competitors can grade a report; almost none will show every clause-level reason. Radical transparency is both the brand promise and the hardest thing to copy credibly.
+- **The free check is the funnel.** The free basic verification is the primary distribution mechanism. Every decision about it optimises for reach and for the honest "you have gaps, here is what to fix" moment that pulls users toward the paid tier and toward alkatera.
+- **Standards are user-selected, never assumed.** Brands operate under different regimes. The product's job is to verify against the standards the user chooses and be explicit about what it did and did not check.
+
+### Success Looks Like
+
+Twelve months from now, the alkatera LCA Verifier is the reflexive first stop for any drinks brand that has an LCA and wants to use it. The free check runs thousands of times, each one a piece of organic distribution, and a healthy share convert to paid reports and badges. Verified badges appear on brand websites and pitch decks, each one carrying a link back that feeds inbound to alkatera. Consultants quietly run their own studies through it before delivery. The report is trusted precisely because it is known to fail things, including alkatera's own output, and "verified by alkatera" has become shorthand in the industry for a claim you can actually stand behind.
+
+## 2. User Research
+
+### Primary Persona
+
+Sophie, 34, Head of Brand at a growing drinks company of around 25 people. She owns the sustainability story because it sits closest to marketing, not because she is an LCA specialist. Her day is spent on packaging, retailer listings, campaigns, and the founder's ambition to put a credible carbon message on-pack. She has an LCA in hand, generated by a platform or a consultant, and a nagging fear that if she publishes a number and it is challenged, either by a retailer's sustainability team, a journalist, or a regulator under the incoming EU Green Claims Directive, she has no independent backing. She is comfortable with SaaS tools but glazes over at "characterisation factor" and "pedigree matrix." What would make her act is a way to know, quickly and in language she can defend, whether her LCA is solid enough to build a claim on, and exactly what to fix if it is not.
+
+### Secondary Personas
+
+- **The LCA consultant.** An independent practitioner or small agency who produces studies for multiple clients. They want a fast, independent second check to catch errors before delivery and to reassure clients. Their relationship to the product is professional and slightly wary: it must be rigorous enough to respect, and transparent enough that they can see and contest its reasoning.
+- **The sustainability platform (including alkatera).** A tool that generates LCAs and wants to offer, or point customers toward, an independent verification step. For alkatera specifically, the verifier is both a credibility layer and a top-of-funnel engine.
+- **The buyer or investor.** A retailer's sustainability lead, a procurement manager, or an investor doing diligence, who needs to judge whether a supplier's environmental claim is credible without conducting their own review. They encounter the product through the verification badge and report a brand shares.
+
+### Jobs To Be Done
+
+- **Functional:** "When I have an LCA and want to make a public claim, help me confirm it holds up against the relevant standards and tell me exactly what to fix if it does not." "When I receive a supplier's or client's LCA, help me judge its credibility fast."
+- **Emotional:** "Let me feel confident publishing a sustainability claim instead of anxious that it will be torn apart." "Let me stop feeling out of my depth with LCA jargon."
+- **Social:** "Let me show a retailer, a journalist, or a regulator that our claim is independently verified, so we are seen as a brand that does sustainability properly rather than one that greenwashes."
+
+### Pain Points
+
+1. **No affordable path to independent verification (severe, blocks publication).** Formal ISO 14044 critical review costs thousands and takes weeks. Most small brands simply cannot access it, so their LCA carries a "not reviewed" caveat and their claims sit exposed. Today they either pay heavily, skip verification, or do not make the claim at all.
+2. **Opaque expert reviews (high, recurring).** Even when a brand pays for review, the output is often terse and jargon-heavy. They cannot tell what was checked or how to act on it. They currently rely on trust and follow-up calls.
+3. **Cannot judge their own LCA's quality (high, frequent).** A non-expert holding an LCA has no way to know if it is good. They currently guess, ask the platform that made it (not independent), or ignore the question.
+4. **Regulatory anxiety is rising (growing, high consequence).** The EU Green Claims Directive and tightening advertising rules mean an unsupported claim is a real legal and reputational risk. Brands feel this but have no tool to de-risk it. They currently watch the regulation nervously and delay.
+5. **Inconsistency between reviewers (moderate, corrosive).** Two reviewers can reach different verdicts on the same study, which erodes trust in the whole exercise. There is currently no reproducible standard to point to.
+
+### Current Alternatives & Competitive Landscape
+
+- **Formal ISO 14044 critical review (external expert or panel).** The gold standard for rigour and the only route that supports public comparative assertions. It falls short on speed, cost, accessibility, and transparency, and switching to it is precisely what most of our users cannot afford. The verifier does not replace formal review for high-stakes comparative claims; it makes credible verification accessible for the vast majority of cases that never get any review at all.
+- **Generic LCA consultants.** Variable in rigour, rarely show their working, and priced beyond small brands for a quick check. Switching requires finding, vetting, and briefing an individual.
+- **A platform's own internal or automated compliance check.** Convenient but not independent, and therefore carries no external credibility. The example alkatera report itself states its automated checks "do not constitute a formal critical review."
+- **Do nothing (publish unverified or do not claim).** The most common alternative. Either exposes the brand to greenwashing risk or forecloses a marketing opportunity. This is the true competitor: inertia and the absence of an affordable option.
+
+### Key Assumptions to Validate
+
+- **We assume brands will trust a verifier that is commercially linked to alkatera.** To validate: test whether framing as independent and platform-agnostic, plus the willingness to fail alkatera's own reports, overcomes the conflict-of-interest concern in user interviews and early usage.
+- **We assume the free check drives meaningful inbound to alkatera.** To validate: instrument the funnel and measure click-through and platform sign-ups from verifier users over the first 90 days.
+- **We assume a verification engine can re-check LCA calculations reliably from a PDF.** To validate: run the verifier against a set of known-good and known-flawed LCAs and measure whether it catches the planted errors without false positives.
+- **We assume brands value a badge enough to display it.** To validate: track badge generation and actual placement on brand sites among the first cohort.
+- **We assume "fiercely transparent, clause-level" output is a real differentiator users notice.** To validate: A/B or interview against a plain grade-only output and see whether transparency changes trust and conversion.
+- **We assume the market extends beyond drinks.** To validate: watch whether non-drinks brands find and use the free check once public, before investing in broadening scope.
+- **We assume low price will not signal low credibility.** To validate: test messaging and watch whether cheap-but-rigorous positioning is believed or undermines trust.
+
+### User Journey Map
+
+Sophie hears about the verifier through alkatera, an industry newsletter, or a peer who displays a verified badge (awareness: curious, slightly sceptical). She lands on a page promising free, independent, transparent LCA verification and, crucially, no jargon (consideration: hopeful). She uploads her existing LCA PDF and selects the standards that matter to her (first use: a little nervous, unsure what the verdict will be). Within minutes she receives a clear certification tier and a plain-English, clause-by-clause breakdown of what passed and what failed (magic moment: relief and clarity, "finally I understand where I stand"). She sees that a Silver becomes a Gold if she improves data quality on two ingredients, and that the fix is concrete. She upgrades to the paid tier for the full report and badge, or she takes the findings back to alkatera to strengthen the underlying LCA (habit formation: the verifier becomes her checkpoint before any claim goes out). She displays the badge, which links back and quietly recruits the next brand (advocacy). Friction points to watch: the anxiety of an unknown verdict at first use, and any moment the output tips back into jargon.
+
+## 3. Product Strategy
+
+### Product Principles
+
+- **Never assert without a citation.** Every finding names its standard and clause. If the engine cannot cite, it reports uncertainty rather than a verdict.
+- **Fail honestly, including our own.** The product must be willing to grade an alkatera-generated LCA harshly. This is the source of its credibility, not a bug to be managed.
+- **The free tier must deliver a real, useful verdict.** It is a funnel, but a dishonest or crippled free check would destroy the trust the whole product depends on. Free means limited scope, not limited integrity.
+- **Translate, do not dumb down.** Outputs are plain English, but the underlying check is fully standards-bound. We simplify the language, never the rigour.
+- **User chooses the standards; we report exactly what we checked.** No silent assumptions about which regime applies, and explicit disclosure of what was in and out of scope.
+- **Cheap to run is a feature.** Favour architectures and models that keep per-verification cost low, because the strategy depends on it.
+
+### Market Differentiation
+
+The market splits into two poles: expensive, slow, opaque human review at one end, and convenient-but-not-independent platform self-checks at the other. Between them sits a large population of brands with an LCA and no credible, affordable way to verify it. The alkatera LCA Verifier occupies exactly that gap. It is independent (unlike a platform's own check), instant and low-cost (unlike human review), platform-agnostic (unlike a feature bolted onto one tool), and fiercely transparent (unlike almost everyone). The defensibility comes from two places that are hard to copy: the encoded methodological expertise of someone who has built the LCA engine and knows where studies fail, and the reputational moat of a verifier that is publicly willing to fail reports, including its own parent company's. A competitor can build a grading tool; it is far harder to build a trusted one.
+
+### Magic Moment Design
+
+The magic moment is the brand uploading their LCA, selecting standards, and receiving within minutes an independent report with a clear tier and a plain-English, clause-by-clause list of what passed, what failed, and how to fix it. For this to happen reliably, three things must be true in the MVP: (1) the engine can ingest and structure an LCA PDF from varied layouts, (2) it can evaluate it against a real, encoded set of standard clauses and cite each one, and (3) it can render the verdict in plain language a non-expert can act on. The shortest path from sign-up to this moment is: land, upload PDF, select standards, see result. Everything not on that path is deferred. This moment is fully achievable in the MVP; if it were not, the MVP would be wrong.
+
+### MVP Definition
+
+In scope for v1, buildable by a solo founder with Claude Code in roughly 4 to 8 weeks:
+
+- **LCA PDF upload and structured extraction.** Ingest an LCA PDF from any platform and extract the key data (impact totals, lifecycle breakdown, data quality, GHG split, boundaries, allocation, EoL). Done when a report like the alkatera example is reliably parsed into a structured object. Essential because it is the front door to the magic moment.
+- **Standards selection.** Let the user choose which standards to verify against from a defined set (ISO 14040/44, ISO 14067, ISO 14046, GHG Protocol, PAS 2050, with global frameworks flagged as available). Done when selection drives which clauses are evaluated. Essential to the "no silent assumptions" principle.
+- **Verification engine with clause-level findings.** Evaluate the extracted LCA against the selected standards' encoded clauses, re-checking core calculations, and produce conforms / minor gap / major gap findings, each citing its clause. Done when it correctly catches planted errors in a test set. This is the core value.
+- **Tiered certification with transparent reasoning.** Roll findings into Bronze / Silver / Gold, always accompanied by the clause-level reasons. Done when a tier is never shown without its justification.
+- **Free basic check vs paid full report and badge.** A free verdict with limited scope; a paid full report plus shareable verification badge and certificate. Done when Stripe gates the paid output and a badge is generated. Essential because it is the funnel and the business model.
+- **Accounts and history.** Supabase auth and stored verification records so a brand can return to past results. Done when a returning user sees their history.
+
+### Explicitly Out of Scope
+
+- **Direct alkatera API ingestion.** Tempting because it enables cleaner data than PDF parsing, but it couples the MVP to one platform and delays the platform-agnostic proof. Deferred until PDF ingestion is proven, likely within the first few months post-launch.
+- **Formal ISO 14044 critical review workflow (human reviewer in the loop).** Tempting for high-stakes comparative claims, but it reintroduces the cost and latency the product exists to escape. Reconsider once the automated verifier has credibility and a clear demand for a premium human-backed tier emerges.
+- **Non-PDF and non-LCA document types, and full multi-language support.** Deferred until core demand is proven.
+- **Deep re-modelling of the LCA (recomputing from raw inventory in an LCA engine).** The verifier checks and re-cross-checks; it does not rebuild the study. Building an LCA is alkatera's job, and conflating the two blurs the independence story. Not this time.
+- **Public verification directory or marketplace.** Attractive for network effects but premature. Reconsider after there is a critical mass of verified reports.
+
+### Feature Priority (MoSCoW)
+
+- **Must Have:** PDF upload and extraction; standards selection; verification engine with clause-level citations; core calculation re-checks; tiered certification with transparent reasoning; free vs paid gating (Stripe); verification badge and report generation; accounts and history.
+- **Should Have:** Global frameworks beyond the ISO/GHG core (SBTi, CDP, EU Green Claims Directive) as selectable standards; email delivery of completed reports; a public page rendering a shared badge and its underlying findings.
+- **Could Have:** Direct alkatera API ingestion; consultant multi-report dashboard; comparison of two LCAs; guided remediation checklists.
+- **Won't Have (this time):** Human-in-the-loop formal critical review; non-PDF ingestion; verification marketplace/directory; full re-modelling from raw inventory; multi-language.
+
+### Core User Flows
+
+- **Verify an LCA (primary).** Trigger: user has an LCA and wants a verdict. Steps: sign up or log in → upload PDF → select standards → engine extracts and evaluates → view tiered result with clause-level findings → optionally upgrade for full report and badge. Outcome: an independent, transparent verification. Success: user reaches the result screen and understands their tier and top fixes.
+- **Upgrade and publish (monetisation).** Trigger: user wants the full report and badge. Steps: from a free result, choose paid → Stripe checkout → receive full report and shareable badge/certificate. Outcome: a publishable proof of verification. Success: badge generated and report downloaded or emailed.
+- **Return to history.** Trigger: user wants a past result. Steps: log in → history → open a stored verification. Outcome: retrieval without re-running. Success: past findings render correctly.
+
+### Success Metrics
+
+- **Primary metric:** Number of LCAs verified (free plus paid). This is the clearest signal of adoption and of funnel volume. Good: hundreds in the first 90 days. Great: thousands.
+- **Secondary metrics:** Free-to-paid conversion rate; inbound click-throughs and sign-ups to alkatera attributed to the verifier; badges generated and actually displayed.
+- **Leading indicators:** Upload completion rate (uploads that reach a result); return-user rate; time-to-result staying within the "minutes" promise.
+- **Thresholds:** Free-to-paid conversion good at ~3 to 5 percent, great above 8 percent. Attributed alkatera sign-ups good if the verifier becomes a top-three inbound source within six months.
+
+### Risks
+
+- **Independence perception (likely, high impact).** Users may distrust a verifier owned by an LCA vendor. Mitigation: lead with platform-agnostic positioning, publicly fail alkatera's own reports, and be transparent about the commercial relationship.
+- **Extraction reliability across varied PDFs (likely, high impact).** Third-party reports differ wildly in layout. Mitigation: robust structured extraction with an LLM, validation checks, and graceful handling when confidence is low rather than silent wrong answers.
+- **False verdicts (possible, severe).** A wrong pass or fail damages credibility fast. Mitigation: a test suite of known-good and known-flawed studies, conservative "insufficient information" states, and never asserting without a citation.
+- **Regulatory or legal exposure of the verdicts themselves (possible, high).** Stating a study conforms could carry liability. Mitigation: clear scope disclaimers, precise language ("checked against clause X" not "certified fit for all claims"), and legal review of output wording.
+- **Low price signalling low quality (possible, moderate).** Mitigation: let the rigour and transparency of the output do the talking; position cheap as a deliberate mission choice.
+- **Cost of verification eroding the low-cost mandate (possible, moderate).** Heavy LLM usage could make each check expensive. Mitigation: efficient prompts, caching of standards logic, and model selection tuned for cost.
+- **Scope creep toward re-building LCAs (possible, moderate).** Mitigation: hold the line that the verifier checks, alkatera builds.
+
+## 4. Brand Strategy
+
+### Positioning Statement
+
+For brands who hold an LCA and need to make a credible environmental claim, the alkatera LCA Verifier is the independent verification service that grades any LCA against the standards you choose and shows its working on every finding. Unlike slow, expensive, opaque expert review or a platform's own internal check, the Verifier is instant, low-cost, platform-agnostic, and fiercely transparent.
+
+### Brand Personality
+
+The Verifier is the straight-talking expert auditor who happens to be genuinely on your side. If it were a person, it would be the seasoned specialist who reads your report closely, tells you plainly where it is strong and where it is weak, and never hides behind jargon to seem clever. It is exacting but never condescending, sceptical but not cynical, and completely incorruptible: it will not tell you what you want to hear. It would wear something plain and well-made, would never issue a verdict it cannot explain, and would rather deliver an honest "this fails, here is why" than a comfortable half-truth.
+
+### Voice & Tone Guide
+
+The voice is constant: authoritative, transparent, plain-spoken, and firmly anti-greenwashing. Tone shifts by context but never drops the citation or the clarity.
+
+| Context | DO | DON'T |
+|---|---|---|
+| Onboarding | "Upload your LCA and choose the standards that matter to you. We will check it against every one and show our working." | "Welcome to the future of sustainability intelligence!" |
+| Error state | "We could not read the impact totals from this PDF. Check it is the full report, then try again." | "Oops, something went wrong." |
+| Empty state | "No verifications yet. Upload your first LCA to see how it holds up." | "It is a bit quiet in here..." |
+| Success / result | "Silver. Conforms on 11 of 14 clauses. Two data-quality gaps are holding you back from Gold, both fixable. See the details below." | "Congratulations, your LCA is amazing!" |
+| A failing finding | "Major gap — ISO 14044 §4.2.3.6. All inputs rely on secondary data, so data quality cannot reach the top tier. To improve: collect primary data from your top three contributors." | "Your data quality could be better." |
+| Marketing copy | "Independent, transparent LCA verification. We will even fail our own reports." | "The most trusted, revolutionary, AI-powered LCA platform." |
+
+### Messaging Framework
+
+- **Tagline:** Verify the claim, not just the calculation.
+- **Homepage headline:** Independent LCA verification that shows its working.
+- **Value propositions:** (1) Know in minutes whether your LCA can back a public claim. (2) Every grade traced to the exact standard and clause, in plain English. (3) Independent and platform-agnostic: we verify any LCA, and we will fail our own.
+- **Feature descriptions:** Written as capabilities-with-benefit, e.g. "Choose your standards. Verify against ISO 14040/44, ISO 14067, ISO 14046, GHG Protocol and more, and see exactly what we checked."
+- **Objection handlers:** "Isn't alkatera conflicted?" → "We verify LCAs from any platform and publicly fail our own reports when they fall short. Independence is the whole point." "Is it as good as a formal review?" → "For high-stakes comparative claims, formal ISO 14044 review still matters. For the vast majority of claims that today get no review at all, we give you credible, transparent verification in minutes."
+
+### Elevator Pitches
+
+- **5-second:** Independent, transparent verification for any LCA, in minutes.
+- **30-second:** Most sustainability claims sit on LCAs that were never independently verified, because formal review is slow, costly, and opaque. The alkatera LCA Verifier checks any LCA against the standards you choose, grades it Bronze, Silver, or Gold, and shows its working on every finding, so brands can make claims they can actually defend.
+- **2-minute:** Every "sustainable" claim on a product depends on an LCA, but almost none of those studies get independently verified, because ISO 14044 critical review costs thousands, takes weeks, and comes back in impenetrable jargon. So brands either publish claims they cannot fully defend, which is a growing legal risk under the EU Green Claims Directive, or they stay silent. We built alkatera to generate LCAs, and we saw this gap from the inside. The alkatera LCA Verifier closes it: upload any LCA from any platform, select the standards that apply to you, and in minutes get an independent verdict, a Bronze, Silver, or Gold tier, and a plain-English, clause-by-clause list of what passed, what failed, and how to fix it. It is low-cost by design and fiercely transparent, so much so that we will fail our own reports when they fall short. That honesty is exactly why brands, consultants, and buyers can trust the badge. We are looking to make independent verification the default step between having an LCA and making a claim.
+
+### Competitive Differentiation Narrative
+
+Formal LCA critical review is the gold standard and will remain so for high-stakes comparative assertions, but it serves a tiny fraction of the market: it is expensive, slow, inconsistent between reviewers, and delivered in language brands cannot act on. At the other extreme, LCA platforms offer internal compliance checks that are convenient but, by their own admission, do not constitute independent review. That leaves the great majority of brands with an LCA and no affordable, credible way to verify it. The alkatera LCA Verifier is built for exactly those brands. It is independent, instant, low-cost, platform-agnostic, and radically transparent, citing the standard and clause behind every finding. Its defensibility is not the grading logic, which others could imitate, but the trust: it is built by the team that knows where LCAs fail because they built the engine that makes them, and it is willing to fail its own parent company's reports in public. In a category defined by scepticism, the verifier that most visibly refuses to flatter anyone wins.
+
+## 5. Visual Design
+
+Visual design tokens (colors, typography, spacing, components, motion) live in `docs/design.md`. If that file does not yet exist, run the Design System skill with image references to generate it before building. The example alkatera LCA report is a strong reference for the visual language: dark cover, clean light interior pages, lime-green accent, serif display headings, monospace labels.
