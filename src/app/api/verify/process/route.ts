@@ -1,5 +1,6 @@
 import { after, NextResponse } from "next/server";
 import { runVerification } from "@/lib/engine/run";
+import { checkRateLimit, rateLimitResponse } from "@/lib/rateLimit";
 
 /**
  * POST /api/verify/process — async verification worker (TASK-027).
@@ -23,6 +24,12 @@ export async function POST(request: Request) {
       { error: "Missing verificationId" },
       { status: 400 },
     );
+  }
+
+  // Retries are fine; hammering one record is not (TASK-048).
+  const rate = checkRateLimit(`process:${verificationId}`, 5, 10 * 60 * 1000);
+  if (!rate.allowed) {
+    return rateLimitResponse(rate);
   }
 
   const id = verificationId;

@@ -4,6 +4,7 @@ import { Banner } from "@/components/ui/Banner";
 import { CalcChecksTable } from "@/components/features/CalcChecksTable";
 import { FindingItem, type FindingView } from "@/components/features/FindingItem";
 import { MagicMomentEvent } from "@/components/features/MagicMomentEvent";
+import { TrackOnMount } from "@/components/TrackOnMount";
 import { RetryButton } from "@/components/features/RetryButton";
 import { TierBadge } from "@/components/features/TierBadge";
 import { UpgradeCTA } from "@/components/features/UpgradeCTA";
@@ -155,6 +156,20 @@ export default async function VerificationPage({
   return (
     <div>
       <MagicMomentEvent verificationId={verification.id} tier={tier} />
+      {payment === "success" ? (
+        <>
+          <TrackOnMount
+            event="payment_completed"
+            properties={{ verification_id: verification.id }}
+          />
+          {badge ? (
+            <TrackOnMount
+              event="badge_created"
+              properties={{ verification_id: verification.id }}
+            />
+          ) : null}
+        </>
+      ) : null}
       {heading}
 
       {payment === "cancelled" && !verification.is_paid ? (

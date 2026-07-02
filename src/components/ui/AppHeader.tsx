@@ -15,7 +15,7 @@ export function AppHeader({ userEmail }: { userEmail: string }) {
 
   return (
     <header className="border-b border-border bg-surface">
-      <div className="mx-auto flex h-16 w-full max-w-content items-center justify-between gap-4 px-6">
+      <div className="mx-auto flex w-full max-w-content flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:px-6">
         <Link
           href="/dashboard"
           className="font-mono text-label uppercase text-ink"

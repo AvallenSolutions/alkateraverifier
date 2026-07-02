@@ -60,6 +60,35 @@ const DESCRIPTORS: Record<string, ClauseCheckDescriptor> = {
     evaluationGuidance:
       "Check biogenic CO2 emissions and removals are quantified and reported separately from fossil GHG emissions (separate line items or a fossil/biogenic split), not silently netted into a single figure.",
   },
+  // Global frameworks (TASK-044, FR-011) — relevance checks, not certification gates.
+  "SBTI:C15": {
+    standardCode: "SBTI",
+    clauseRef: "C15",
+    mode: "llm",
+    evaluationGuidance:
+      "Check the study could feed a scope 3 inventory or product-level target: GHG Protocol-consistent boundary, recognised GWP factors (e.g. IPCC AR6), and documented data sources. Judge compatibility, not whether a target exists.",
+  },
+  "CDP:6.5": {
+    standardCode: "CDP",
+    clauseRef: "6.5",
+    mode: "llm",
+    evaluationGuidance:
+      "Check disclosure readiness: methodology and emission-factor sources named with versions, boundary and exclusions stated and justified, approach reproducible by a reviewer.",
+  },
+  "EU_GREEN_CLAIMS:Art.3": {
+    standardCode: "EU_GREEN_CLAIMS",
+    clauseRef: "Art.3",
+    mode: "llm",
+    evaluationGuidance:
+      "Check whether an explicit green claim resting on this study would be substantiated: life-cycle perspective, significant impacts covered without cherry-picking, primary/secondary data reliance disclosed, trade-offs visible. Heavy reliance on unverified secondary data or missing impact categories without justification is a gap.",
+  },
+  "EU_GREEN_CLAIMS:Art.5": {
+    standardCode: "EU_GREEN_CLAIMS",
+    clauseRef: "Art.5",
+    mode: "llm",
+    evaluationGuidance:
+      "Check the study gives a claim-maker what they must communicate: the boundary and units alongside any claim, the covered impacts, and an honest statement of verification/critical-review status.",
+  },
 };
 
 export function getDescriptor(

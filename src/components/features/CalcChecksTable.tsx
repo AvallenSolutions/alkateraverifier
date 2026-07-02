@@ -26,7 +26,12 @@ export function CalcChecksTable({ checks }: { checks: CalcCheckView[] }) {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div
+      className="overflow-x-auto"
+      tabIndex={0}
+      role="region"
+      aria-label="Calculation cross-checks"
+    >
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="border-b border-border-strong">
