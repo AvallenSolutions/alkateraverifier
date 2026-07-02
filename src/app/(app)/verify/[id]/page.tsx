@@ -6,6 +6,7 @@ import { FindingItem, type FindingView } from "@/components/features/FindingItem
 import { MagicMomentEvent } from "@/components/features/MagicMomentEvent";
 import { RetryButton } from "@/components/features/RetryButton";
 import { TierBadge } from "@/components/features/TierBadge";
+import { UpgradeCTA } from "@/components/features/UpgradeCTA";
 import { VerificationProgress } from "@/components/features/VerificationProgress";
 import { LOW_CONFIDENCE_THRESHOLD } from "@/lib/extraction/extract";
 import type { GateResult } from "@/lib/engine/score";
@@ -22,10 +23,13 @@ export const metadata = { title: "Verification — alkatera LCA Verifier" };
  */
 export default async function VerificationPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ payment?: string }>;
 }) {
   const { id } = await params;
+  const { payment } = await searchParams;
   const supabase = await createClient();
 
   const { data: verification } = await supabase
@@ -139,10 +143,36 @@ export default async function VerificationPage({
     verification.extraction_confidence < LOW_CONFIDENCE_THRESHOLD;
   const conformsCount = findings.filter((f) => f.result === "conforms").length;
 
+  // Badge (paid artefact); RLS allows public read of badges.
+  const { data: badge } = verification.is_paid
+    ? await supabase
+        .from("badges")
+        .select("public_slug")
+        .eq("verification_id", id)
+        .maybeSingle()
+    : { data: null };
+
   return (
     <div>
       <MagicMomentEvent verificationId={verification.id} tier={tier} />
       {heading}
+
+      {payment === "cancelled" && !verification.is_paid ? (
+        <div className="mt-4">
+          <Banner variant="info" title="Payment not completed">
+            No payment was taken. Your free result below is untouched, and you
+            can unlock the report whenever you like.
+          </Banner>
+        </div>
+      ) : null}
+      {payment === "success" && !verification.is_paid ? (
+        <div className="mt-4">
+          <Banner variant="info" title="Payment received">
+            Thanks. We are unlocking your report and badge now; refresh in a
+            few seconds if they have not appeared yet.
+          </Banner>
+        </div>
+      ) : null}
 
       <section className="mt-6 rounded-md border border-border bg-surface p-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -219,6 +249,37 @@ export default async function VerificationPage({
           ))}
         </div>
       </section>
+
+      <div className="mt-8">
+        {verification.is_paid ? (
+          <section className="rounded-md border border-border bg-surface p-5">
+            <p className="font-mono text-label uppercase text-on-surface-subtle">
+              Your report &amp; badge
+            </p>
+            <h2 className="mt-2 font-display text-h2 text-ink">
+              Unlocked and ready to share
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href={`/api/verify/${verification.id}/report`}
+                className="rounded-full bg-accent px-6 py-2.5 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
+              >
+                Download report (PDF)
+              </a>
+              {badge ? (
+                <a
+                  href={`/badge/${badge.public_slug}`}
+                  className="rounded-full border border-border-strong bg-surface px-6 py-2.5 font-mono text-label uppercase text-ink transition-colors hover:bg-surface-sunken"
+                >
+                  View public badge
+                </a>
+              ) : null}
+            </div>
+          </section>
+        ) : (
+          <UpgradeCTA verificationId={verification.id} />
+        )}
+      </div>
 
       <section className="mt-8 border-t border-border pt-5">
         <p className="text-body-sm text-on-surface-muted">
