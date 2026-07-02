@@ -1,0 +1,187 @@
+{
+  "product": {
+    "name": "UNROOTED Mighty Ginger, Chilli & Baobab Shot 60ml",
+    "company": "Happy Curations Ltd",
+    "functionalUnit": "1 unit of UNROOTED Mighty Ginger, Chilli & Baobab Shot 60ml",
+    "referenceYear": 2025,
+    "reportDate": "2026-06-11",
+    "reportVersion": "2.0",
+    "sourcePlatform": "alkatera"
+  },
+  "goalAndScope": {
+    "intendedApplication": "Quantify environmental impacts across the full value chain for standardised sustainability disclosures.",
+    "intendedAudience": [
+      "Internal Stakeholders",
+      "B2C Consumers",
+      "Investors & Shareholders",
+      "General Public",
+      "B2B Customers"
+    ],
+    "reasonsForStudy": "To quantify the carbon footprint and environmental impact of this product in accordance with ISO 14044/14067.",
+    "comparativeAssertion": false,
+    "systemBoundary": "Cradle-to-Grave",
+    "includedStages": [
+      "Raw material extraction & agricultural production",
+      "Primary ingredient processing",
+      "Packaging material manufacture",
+      "Factory operations & energy use",
+      "Distribution & transport to retail",
+      "Consumer use phase (refrigeration)",
+      "End-of-life disposal & recycling credits"
+    ],
+    "excludedStages": [
+      "Capital goods & infrastructure",
+      "Employee commuting"
+    ],
+    "cutOffCriteria": "Mass: <1% of total input mass. Energy: <1% of total energy input. Environmental significance: any flow contributing >1% to any impact category is included regardless of mass/energy contribution."
+  },
+  "methodology": {
+    "lciaMethod": "ReCiPe 2016 v1.1 Midpoint (H)",
+    "gwpMethod": "IPCC AR6 GWP-100",
+    "referenceStandards": [
+      "ISO 14040:2006",
+      "ISO 14044:2006",
+      "ISO 14067:2018",
+      "ISO 14046:2014",
+      "GHG Protocol Product Standard",
+      "PAS 2050:2011"
+    ],
+    "databases": [
+      { "name": "Primary Supplier Data", "version": null, "factorCount": 0 },
+      { "name": "ecoinvent", "version": "3.12", "factorCount": 14 },
+      { "name": "AGRIBALYSE", "version": "3.2", "factorCount": 7 },
+      { "name": "DEFRA Emission Factors", "version": "2025", "factorCount": 5 }
+    ]
+  },
+  "impacts": {
+    "climateTotalKgCo2e": 0.087,
+    "fossilKgCo2e": 0.0737,
+    "biogenicKgCo2e": 0.0129,
+    "lulucKgCo2e": 0.0,
+    "waterLitres": 0.025,
+    "waterScarcityWeightedLitresEq": 0.003,
+    "landUseM2": 0.029,
+    "otherCategories": [
+      { "name": "Acidification", "value": 5.256e-4, "unit": "kg SO2-eq" },
+      { "name": "Eutrophication (Freshwater)", "value": 2.256e-5, "unit": "kg P-eq" },
+      { "name": "Fossil Resource Scarcity", "value": 2.703e-2, "unit": "kg oil-eq" }
+    ],
+    "zeroImpactCategories": [
+      { "name": "Marine Eutrophication", "reason": "No marine eutrophication characterisation factors available in the applied emission factor datasets." },
+      { "name": "Ozone Depletion", "reason": "No ozone-depleting substances identified in the product system." },
+      { "name": "Photochemical Ozone Formation", "reason": "No characterisation factors available for these input materials." },
+      { "name": "Particulate Matter", "reason": "No characterisation factors available for these input materials." },
+      { "name": "Human Toxicity (Cancer)", "reason": "No carcinogenic toxicity characterisation factors available for these input materials." },
+      { "name": "Human Toxicity (Non-cancer)", "reason": "No non-carcinogenic toxicity characterisation factors available for these input materials." }
+    ]
+  },
+  "lifecycleStages": [
+    { "stage": "raw_materials", "label": "Raw Materials", "kgCo2e": 0.037, "sharePercent": 42.8 },
+    { "stage": "packaging", "label": "Packaging", "kgCo2e": 0.0515, "sharePercent": 59.5 },
+    { "stage": "distribution", "label": "Distribution", "kgCo2e": 0.0039, "sharePercent": 4.5 },
+    { "stage": "processing", "label": "Processing", "kgCo2e": 0.0055, "sharePercent": 6.4 },
+    { "stage": "use_phase", "label": "Use Phase", "kgCo2e": 0.0012, "sharePercent": 1.4 },
+    { "stage": "end_of_life", "label": "End of Life", "kgCo2e": -0.0126, "sharePercent": -14.6 }
+  ],
+  "ghgSpecies": [
+    { "species": "CO2 (fossil)", "massKg": 0.0737, "co2eKg": 0.0737, "gwp100": 1 },
+    { "species": "CO2 (biogenic)", "massKg": 0.0129, "co2eKg": 0.0129, "gwp100": 1 },
+    { "species": "CO2 (LULUC)", "massKg": 0.0, "co2eKg": 0.0, "gwp100": 1 },
+    { "species": "CH4 (fossil)", "massKg": 0.0, "co2eKg": 0.0, "gwp100": 29.8 },
+    { "species": "CH4 (biogenic)", "massKg": 0.0, "co2eKg": 0.0, "gwp100": 27.0 },
+    { "species": "N2O", "massKg": 0.0, "co2eKg": 0.0, "gwp100": 273 },
+    { "species": "HFCs / PFCs", "massKg": null, "co2eKg": 0.0, "gwp100": null }
+  ],
+  "ghgTotalAllSpeciesKgCo2e": 0.0866,
+  "scopeSplit": {
+    "scope1Percent": 0.0,
+    "scope2Percent": 0.0,
+    "scope3Percent": 100.0
+  },
+  "dataQuality": {
+    "overallScorePercent": 64,
+    "overallRating": "Fair",
+    "pedigree": {
+      "reliability": 3,
+      "completeness": 1,
+      "temporal": 4,
+      "geographic": 2,
+      "technological": 2
+    },
+    "primarySharePercent": 0,
+    "secondarySharePercent": 100,
+    "proxySharePercent": 0,
+    "totalMaterials": 14,
+    "materials": [
+      { "name": "Scotch Bonnet Extract", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Ross-on-Wye HR9, UK" },
+      { "name": "Ginger Juice NFC", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Lima, Peru" },
+      { "name": "Pineapple Juice NFC", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "70 Stuttgart, Germany" },
+      { "name": "Baobab Powder", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Harare, Zimbabwe" },
+      { "name": "Lemon Juice NFC", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Murcia, Spain" },
+      { "name": "Water", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Reading, UK" },
+      { "name": "Ascorbic Acid", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Shanghai, China" },
+      { "name": "Black Pepper Extract", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Mumbai Central, Mumbai, Maharashtra, India" },
+      { "name": "Glass 60ml Bottle", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Rotherham, UK" },
+      { "name": "Label 60ml", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Hungerford RG17, UK" },
+      { "name": "Aluminum Cap", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Cranleigh GU6, UK" },
+      { "name": "SRP packaging 60ml", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Hailsham, UK" },
+      { "name": "OUTER case cardboard", "sourceType": "secondary", "grade": "MEDIUM", "confidencePercent": 50, "geography": "Hailsham, UK" },
+      { "name": "Turmeric Extract", "sourceType": "secondary", "grade": "HIGH", "confidencePercent": 85, "geography": "Mumbai, Maharashtra, India" }
+    ]
+  },
+  "allocation": {
+    "procedure": "Physical allocation by mass is applied for all co-products following the ISO 14044 Clause 4.3.4 hierarchy. Mass-based physical allocation was used throughout; no economic allocation was applied.",
+    "basis": "physical-mass",
+    "avoidedBySubdivisionOrExpansion": false
+  },
+  "endOfLife": {
+    "grossKgCo2e": 0.0041,
+    "creditsKgCo2e": -0.0167,
+    "netKgCo2e": -0.0126,
+    "pathways": [
+      { "material": "Glass 60ml Bottle", "massKg": 0.06, "recyclingPercent": 74, "landfillPercent": 8, "incinerationPercent": 18, "compostingPercent": 0, "anaerobicDigestionPercent": 0, "netKgCo2e": -0.0149 },
+      { "material": "Label 60ml", "massKg": 0.001, "recyclingPercent": 74, "landfillPercent": 5, "incinerationPercent": 15, "compostingPercent": 4, "anaerobicDigestionPercent": 2, "netKgCo2e": 0.0002 },
+      { "material": "Aluminum Cap", "massKg": 0.001, "recyclingPercent": 72, "landfillPercent": 8, "incinerationPercent": 20, "compostingPercent": 0, "anaerobicDigestionPercent": 0, "netKgCo2e": -0.0011 },
+      { "material": "SRP packaging 60ml", "massKg": 0.004, "recyclingPercent": 28, "landfillPercent": 22, "incinerationPercent": 50, "compostingPercent": 0, "anaerobicDigestionPercent": 0, "netKgCo2e": 0.0031 },
+      { "material": "OUTER case cardboard", "massKg": 0.0, "recyclingPercent": 74, "landfillPercent": 5, "incinerationPercent": 15, "compostingPercent": 4, "anaerobicDigestionPercent": 2, "netKgCo2e": 0.0001 }
+    ]
+  },
+  "topContributors": [
+    { "name": "Glass 60ml Bottle", "kgCo2e": 0.033, "sharePercent": 38.1 },
+    { "name": "Pineapple Juice NFC", "kgCo2e": 0.0159, "sharePercent": 18.4 },
+    { "name": "Lemon Juice NFC", "kgCo2e": 0.0099, "sharePercent": 11.5 },
+    { "name": "Aluminum Cap", "kgCo2e": 0.0092, "sharePercent": 10.6 },
+    { "name": "Ginger Juice NFC", "kgCo2e": 0.0074, "sharePercent": 8.5 }
+  ],
+  "uncertainty": {
+    "propagatedPercent": 22,
+    "ci95LowKgCo2e": 0.0698,
+    "ci95HighKgCo2e": 0.1074,
+    "uncertaintyAnalysisPresent": true,
+    "sensitivityAnalysisPresent": true,
+    "methodologyNotes": "Uncertainty propagation follows the root-sum-of-squares approach for geometric standard deviation per Frischknecht et al. (2007), using the Pedigree Matrix for data quality scoring. Sensitivity analysis applies +/-20% variation to emission factors of the top three contributors."
+  },
+  "criticalReview": {
+    "conducted": false,
+    "reviewer": null,
+    "notes": "Critical review NOT CONDUCTED. A critical review per ISO 14044 §6 is recommended before this study is used for public comparative assertions."
+  },
+  "interpretation": {
+    "significantIssues": "The most significant contributors to the carbon footprint are Glass 60ml Bottle, Pineapple Juice NFC and Lemon Juice NFC, collectively accounting for 68.0% of the total impact. The packaging stage dominates at 59.5%.",
+    "keyFindings": [
+      "The total carbon footprint is 0.087 kg CO2e per functional unit.",
+      "Glass 60ml Bottle is the largest single contributor at 38.1% of the total.",
+      "The packaging stage accounts for over half the total impact (59.5%).",
+      "Scope 3 (Value Chain) represents 100% of emissions."
+    ],
+    "limitations": [
+      "Data quality compliance gaps identified: 1 issue(s).",
+      "Secondary LCI data (ecoinvent, AGRIBALYSE, DEFRA) represents average technology and conditions; site-specific primary data would improve accuracy."
+    ],
+    "recommendations": [
+      "Prioritise supplier engagement for Glass 60ml Bottle to obtain primary verified data and reduce uncertainty.",
+      "Improve data quality for highly sensitive parameters (Glass 60ml Bottle) to strengthen result robustness.",
+      "Conduct a third-party critical review per ISO 14044 §6 before using this study for public comparative assertions."
+    ]
+  }
+}
