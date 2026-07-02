@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   useVerificationStatus,
   type VerificationStatusSnapshot,
@@ -23,7 +25,19 @@ export function VerificationProgress({
   id: string;
   initial: VerificationStatusSnapshot;
 }) {
+  const router = useRouter();
   const { status, tier, score, pollError } = useVerificationStatus(id, initial);
+
+  // When polling sees a terminal status, re-render the server page so the
+  // full verdict (or failure reason) replaces this progress view.
+  useEffect(() => {
+    if (
+      (status === "complete" || status === "failed") &&
+      initial.status !== status
+    ) {
+      router.refresh();
+    }
+  }, [status, initial.status, router]);
 
   if (status === "failed") {
     return (
