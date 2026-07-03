@@ -1,90 +1,102 @@
 ---
-version: alpha
-name: alkatera Verifier
-description: Light, paper-toned, ink-led design system for an independent LCA verification web app — editorial serif display, restrained lime highlight, and a metallic certification-tier scale.
+version: v1
+name: alkatera Verifier — studio language
+description: The alkatera·OS studio design language, adapted for the independent LCA Verifier. Warm gallery-grey paper, cream panels and hairlines, ink-led as an incorruptible auditor, one reserved teal accent, statement headlines in Space Grotesk, mono annotation, and a typographic certification ladder. A gallery, not a dashboard.
 colors:
-  background: "#FAF8F3"
-  surface: "#FFFFFF"
-  surface-sunken: "#F1EFE7"
-  ink: "#1C1B18"
-  on-surface-muted: "#5E5C55"
-  on-surface-subtle: "#6E6B62"
-  border: "#E5E1D6"
-  border-strong: "#D3CEC1"
-  accent: "#C2F000"
-  on-accent: "#1C1B18"
-  accent-strong: "#52700A"
-  accent-subtle: "#EDF6C8"
-  success: "#3F7A34"
-  on-success: "#FFFFFF"
-  warning: "#C08A1E"
-  on-warning: "#1C1B18"
-  error: "#B4342A"
-  on-error: "#FFFFFF"
-  info: "#3A6B8C"
-  on-info: "#FFFFFF"
-  tier-not-certified: "#A0554A"
-  tier-bronze: "#9A6532"
-  tier-silver: "#9CA3AC"
-  tier-gold: "#C6A02A"
-  tier-platinum: "#54707D"
-  on-metal-light: "#FFFFFF"
-  on-metal-dark: "#1C1B18"
+  background: "#ECEAE3"        # paper — the ground of every surface
+  surface: "#F2F1EA"           # cream — panels; text and marks on colour
+  surface-sunken: "#E4E1D7"    # a deeper cream for recessed/muted panels
+  ink: "#1A1B1D"               # text, actions, the shell bands
+  on-ink: "#F2F1EA"            # cream text on ink / on saturated blocks
+  on-surface-muted: "#6F6F68"  # dim — quiet text on paper
+  on-surface-subtle: "#8A897F" # meta — times, ages, hexes at the margins
+  border: "#D9D6CB"            # hairline — rules and panel borders
+  border-strong: "#C9C5B8"     # a firmer hairline for emphasis
+  # The reserved Verifier accent — deliberately NOT one of the four brand rooms.
+  # Ink-led auditor with a single teal act. (Default; 2–3 swatches to confirm.)
+  accent: "#0B6E5E"
+  accent-strong: "#0A5F52"     # accent as text/eyebrows on paper (AA)
+  accent-subtle: "#D9E8E3"     # tinted states (active tab wash)
+  on-accent: "#F2F1EA"         # cream text on the accent fill
+  # The four brand rooms — available, but the Verifier does not claim one.
+  forest: "#205E40"
+  cobalt: "#2B46C0"
+  ochre: "#DFA32B"
+  ochre-ink: "#A97C14"         # ochre's paper-safe accent form
+  brick: "#BF4B2A"
+  on-colour: "#F2F1EA"         # cream text on any saturated block
+  # Working tones — states, never decoration. -ink forms are AA as text on paper.
+  tone-good: "#047857"
+  tone-good-ink: "#036B4E"
+  tone-attention: "#9A4708"
+  tone-lost: "#BE123C"
+  tone-lost-ink: "#A81E2E"
+  tone-hold: "#6D28D9"
+  tone-hold-ink: "#5B21B6"
+  # The certification ladder — typographic (no pills). Five distinct, AA-as-text tones.
+  tier-not-certified: "#A81E2E"
+  tier-bronze: "#8A5A22"
+  tier-silver: "#59636E"
+  tier-gold: "#A97C14"
+  tier-platinum: "#3E5C76"
 typography:
-  display:
-    fontFamily: "Playfair Display"
-    fontSize: 48px
-    fontWeight: 600
-    lineHeight: 1.05
-    letterSpacing: -0.01em
+  statement:
+    fontFamily: "Space Grotesk"
+    fontSize: 56px
+    fontWeight: 700
+    lineHeight: 0.95
+    letterSpacing: -0.035em
   h1:
-    fontFamily: "Playfair Display"
+    fontFamily: "Space Grotesk"
     fontSize: 34px
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: -0.01em
+    fontWeight: 700
+    lineHeight: 1.0
+    letterSpacing: -0.02em
   h2:
-    fontFamily: "Playfair Display"
-    fontSize: 26px
+    fontFamily: "Space Grotesk"
+    fontSize: 22px
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: -0.02em
+  big-number:
+    fontFamily: "Space Grotesk"
+    fontSize: 30px
+    fontWeight: 700
+    lineHeight: 1.0
+    fontVariantNumeric: "tabular-nums"
+  card-title:
+    fontFamily: "Space Grotesk"
+    fontSize: 14px
     fontWeight: 600
-    lineHeight: 1.15
-  h3:
-    fontFamily: "Inter"
-    fontSize: 18px
-    fontWeight: 600
-    lineHeight: 1.3
+    lineHeight: 1.2
   body:
-    fontFamily: "Inter"
-    fontSize: 16px
-    fontWeight: 400
-    lineHeight: 1.55
-  body-sm:
     fontFamily: "Inter"
     fontSize: 14px
     fontWeight: 400
     lineHeight: 1.5
-  caption:
+  body-sm:
     fontFamily: "Inter"
     fontSize: 13px
     fontWeight: 400
-    lineHeight: 1.4
-  label:
-    fontFamily: "IBM Plex Mono"
-    fontSize: 12px
-    fontWeight: 500
-    lineHeight: 1.2
-    letterSpacing: 0.08em
-  data:
-    fontFamily: "IBM Plex Mono"
-    fontSize: 14px
-    fontWeight: 400
     lineHeight: 1.5
+  eyebrow:
+    fontFamily: "JetBrains Mono"
+    fontSize: 10px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: 0.22em
+  meta:
+    fontFamily: "JetBrains Mono"
+    fontSize: 10.5px
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: 0.02em
 rounded:
   none: 0
-  sm: 6px
-  md: 10px
-  lg: 16px
-  full: 9999px
+  sm: 4px
+  md: 6px       # panels, inputs, cards — the studio radius
+  lg: 10px
+  full: 9999px  # pills — every action; tabs' hit area
 spacing:
   0: "0"
   1: "4px"
@@ -95,150 +107,138 @@ spacing:
   6: "32px"
   7: "48px"
   8: "64px"
+motion:
+  ease: "cubic-bezier(0.2, 0.8, 0.2, 1)"   # the studio ease — brisk, settles soft
+  hover: "150ms"
+  fact-reveal: "280ms"                     # rise 6px + fade, delay 160ms
+  grid-reweight: "450ms"
+  mark-wake: "500ms"                       # rotate 8°, scale 1.1
 components:
+  band-shell:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.on-ink}"
+    note: "Sticky top + bottom ink bands. Top: wordmark + mark + mono tabs (3px active underline). Bottom: independence/scope strip + quick actions. No desk-link into alkatera·OS — the Verifier is a standalone house."
   button-primary:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.on-ink}"
+    typography: "{typography.eyebrow}"
+    rounded: "{rounded.full}"
+    padding: "12px 20px"
+    note: "Ink is the default act."
+  button-accent:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.on-accent}"
-    typography: "{typography.label}"
+    typography: "{typography.eyebrow}"
     rounded: "{rounded.full}"
     padding: "12px 20px"
-  button-primary-hover:
-    backgroundColor: "#A9D400"
-    textColor: "{colors.on-accent}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "12px 20px"
-  button-secondary:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "12px 20px"
-  button-ghost:
+    note: "The one act the Verifier exists for: Verify."
+  button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    typography: "{typography.label}"
+    typography: "{typography.eyebrow}"
+    rounded: "{rounded.full}"
+    padding: "12px 20px"
+    note: "The second act. 1px border-strong."
+  button-ghost:
+    backgroundColor: "transparent"
+    textColor: "{colors.on-surface-muted}"
+    typography: "{typography.eyebrow}"
     rounded: "{rounded.full}"
     padding: "10px 14px"
+  panel:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.md}"
+    padding: "{spacing.5}"
+    note: "Cream, 1px hairline, radius 6. Hairlines, not boxes."
+  accent-panel:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.md}"
+    padding: "{spacing.5}"
+    note: "The one saturated block per surface — used sparingly; the Verifier is ink-led."
   input-text:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
     typography: "{typography.body}"
     rounded: "{rounded.md}"
     padding: "10px 12px"
-  card:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.5}"
-  card-muted:
-    backgroundColor: "{colors.surface-sunken}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    padding: "{spacing.5}"
-  label:
+  tab:
+    textColor: "{colors.on-surface-muted}"
+    typography: "{typography.eyebrow}"
+    note: "Mono caps; active carries a 3px accent underline."
+  eyebrow:
     textColor: "{colors.on-surface-subtle}"
-    typography: "{typography.label}"
-  nav-item-active:
-    backgroundColor: "{colors.accent-subtle}"
-    textColor: "{colors.accent-strong}"
-    typography: "{typography.body-sm}"
-    rounded: "{rounded.sm}"
-    padding: "8px 12px"
-  badge-tier-not-certified:
-    backgroundColor: "{colors.tier-not-certified}"
-    textColor: "{colors.on-metal-light}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "6px 14px"
-  badge-tier-bronze:
-    backgroundColor: "{colors.tier-bronze}"
-    textColor: "{colors.on-metal-light}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "6px 14px"
-  badge-tier-silver:
-    backgroundColor: "{colors.tier-silver}"
-    textColor: "{colors.on-metal-dark}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "6px 14px"
-  badge-tier-gold:
-    backgroundColor: "{colors.tier-gold}"
-    textColor: "{colors.on-metal-dark}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "6px 14px"
-  badge-tier-platinum:
-    backgroundColor: "{colors.tier-platinum}"
-    textColor: "{colors.on-metal-light}"
-    typography: "{typography.label}"
-    rounded: "{rounded.full}"
-    padding: "6px 14px"
-  finding-conforms:
-    backgroundColor: "{colors.surface}"
+    typography: "{typography.eyebrow}"
+  big-number:
     textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.4}"
-  finding-minor-gap:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.4}"
-  finding-major-gap:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.4}"
-  finding-insufficient:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "{spacing.4}"
+    typography: "{typography.big-number}"
+    note: "Tabular. A mono label sits beneath at 9.5px, +20% tracking, 70% opacity. Never a number without its label."
+  state-text:
+    typography: "{typography.eyebrow}"
+    note: "States are typographic: small bold mono in a working tone. No badge pills, no backgrounds; the word and its colour are enough."
+  tier:
+    typography: "{typography.statement}"
+    note: "The verdict is a big Space Grotesk word in its tier tone over a mono label. No pill, no saturated block."
+  fact-row:
+    note: "Bold subject (Space Grotesk SemiBold), mono meta right, hairline separator. Reveals detail on approach."
 ---
 
-# alkatera Verifier Design System
+# alkatera Verifier Design System — the studio language
 
 ## Overview
 
-The alkatera Verifier is a web app that independently verifies Life Cycle Assessments and grades them against international standards. Its users are non-expert brand and sustainability leads who need to trust a verdict, so the interface must feel authoritative, transparent, and calm — an audit document you can actually read, not a dashboard that shows off. The system is deliberately **light and paper-toned**, **ink-led**, and **editorial**: a warm off-white canvas, near-black serif headlines that echo the alkatera reports it verifies, and the alkatera lime used sparingly as a highlight rather than a flood. It shares DNA with the alkatera app (the lime accent, the gold, the uppercase mono labels) but stands apart through its light surface and serif voice. It must never look like a hype-driven marketing site, never hide its reasoning behind a decorative "black-box" score, and never drown the reader in jargon or chrome.
+The alkatera LCA Verifier wears the alkatera·OS **studio** design language, adapted for a standalone, single-purpose tool. It is a **gallery, not a dashboard**: every surface is a poster with one statement, a few honest numbers, and quiet detail that reveals itself on approach. The ground is warm **gallery grey**; colour is spent in single, saturated blocks, rarely. Everything else is ink, cream and hairlines.
 
-## Colors
+The Verifier is a **house of its own**, not a room on the alkatera desk. Where the OS has five coloured rooms (Today, Sell, Comms, Studio, Settings), the Verifier is deliberately **ink-led** — the incorruptible auditor — with a single reserved **teal** accent for its one act, "Verify". Its independence is carried structurally: no desk-link back into alkatera·OS, a standing independence-and-scope strip in the bottom band, its own maker's mark, and the promise "we will even fail our own reports" kept in view. It is by alkatera, but it stands apart.
 
-The palette is built on warm neutrals so the content, not the UI, carries the weight. `background` (#FAF8F3) is a soft paper tone; `surface` (#FFFFFF) lifts cards a step above it; `surface-sunken` recedes for muted panels. `ink` (#1C1B18) is a warm near-black for primary text and headlines, with `on-surface-muted` and `on-surface-subtle` stepping down for secondary text and labels (both meet WCAG AA on the paper background). `accent` is the alkatera lime (#C2F000) — reserved for primary CTAs, the brand mark, and key interactive emphasis; because bright lime fails text-contrast, use `accent-strong` (#52700A) for lime-coloured text and icons, and `accent-subtle` for tinted states like the active nav item. Semantic colours map directly to verification findings: `success` = conforms, `warning` = minor gap, `error` = major gap or a failed gate, `info` = insufficient information. The five **tier** colours form a metallic ladder — `tier-not-certified` (muted brick), `tier-bronze`, `tier-silver`, `tier-gold` (reusing the alkatera gold), and `tier-platinum` (a cool steel-blue that sits visually apart from silver) — each paired with `on-metal-light` or `on-metal-dark` for legible text.
+## Colours
 
-## Typography
+The ground is warm gallery grey (`background` #ECEAE3). `surface` (#F2F1EA) is the cream of panels; `border` (#D9D6CB) is the hairline that separates them. `ink` (#1A1B1D) carries text, actions, and the sticky shell bands; `on-surface-muted` (dim, #6F6F68) is quiet text, `on-surface-subtle` the mono margins. Text on any saturated block or ink band is **cream or ink only** — never mid-greys.
 
-Three families do distinct jobs. **Playfair Display**, a high-contrast transitional serif, carries `display`, `h1`, and `h2` — it gives the product its editorial, report-like authority and is the single biggest point of difference from the all-sans alkatera app. **Inter** handles everything readable at length: `h3` (a sans subhead for clarity where a serif would feel heavy), `body`, `body-sm`, and `caption`. **IBM Plex Mono** powers `label` (uppercase, letter-spaced 0.08em, for section eyebrows and metadata like standard clauses and dates) and `data` (for figures, emission values, and calculation checks, where monospaced alignment aids scanning). The pairing logic: serif to state, sans to explain, mono to enumerate. Headlines set tight (line-height ~1.05–1.15, slightly negative tracking); body sets open (1.55) for comfortable reading of dense findings.
+The reserved **accent** is a deep teal (#0B6E5E), the Verifier's own colour, distinct from the four brand rooms. It fills the one act (Verify) with cream text, and — as `accent-strong` (#0A5F52) — colours eyebrows, active tabs and key links on paper. The four brand rooms (forest, cobalt, ochre, brick) are defined but the Verifier does not claim one.
 
-## Layout
+**Working tones** are for states, never decoration: good, attention, lost, on-hold. Each has an `-ink` form tuned to pass AA as small text on paper (mirroring how ochre takes #A97C14 on paper). The **certification ladder** is typographic — five distinct tier tones, chosen to stay both legible as text on grey and separable across the metallic steps: not-certified (red), bronze, silver (cool grey), gold, platinum (steel blue).
 
-Spacing follows a 4px base scale (`1`=4px through `8`=64px), keeping vertical rhythm consistent and predictable. Density is **comfortable, not cramped**: verification results are information-heavy, so generous padding (`5`/24px inside cards, `6`/32px between major sections) keeps clause-by-clause findings legible. Content sits in a single readable column (max ~880px for report and findings views) rather than a wide multi-column dashboard — the reading experience is the product. Use `4`/16px as the default gap between related elements, `2`/8px for tight inline groupings (label above value), and `7`/48px to separate distinct report sections.
+## Typography — three voices
 
-## Elevation & Depth
+**Space Grotesk speaks, Inter explains, JetBrains Mono annotates.** `statement` (Space Grotesk Bold, 40–68px, leading 0.95, tracking -3.5%) is the surface's one sentence, ending in a full stop. `big-number` is Space Grotesk Bold and **always tabular**, with a mono label beneath at 9.5px, +20% tracking, 70% opacity — never a number without its label. `card-title` is Space Grotesk SemiBold for names. `body` is Inter for sentences and quiet detail. `eyebrow` (JetBrains Mono Bold, caps, +22%) marks sections, tabs and number labels; `meta` (JetBrains Mono) holds times, ages and hexes. The wordmark is always lowercase — alka in medium, **tera** in bold — here as "alka**tera** verifier", never alkatera·OS.
 
-Depth comes from **borders and surface contrast, not heavy shadows** — this keeps the audit-document feel flat, honest, and print-like. Cards are defined by a 1px `border` hairline over a `surface` fill that sits one step lighter than the paper `background`. Reserve a single soft shadow (0 1px 2px rgba(28,27,24,0.06), 0 4px 12px rgba(28,27,24,0.04)) only for genuinely floating elements: modals, dropdowns, and toasts. Never stack shadows to fake hierarchy; if two things need separating, use spacing or a border first.
+## The marks
 
-## Shapes
+The Verifier signs its surfaces with one geometric **maker's mark** (a verification stamp — geometry to be finalised), cropped by a page corner like a chop mark on a print. On paper: 8% opacity, behind content, one per surface. On a saturated block: cream at 20%, waking to 28% with a small rotation on hover. The mark never carries meaning; it is a signature, not an icon.
 
-Corner radius is restrained and consistent: `md` (10px) for cards, inputs, and panels — soft enough to feel modern, sharp enough to feel precise; `sm` (6px) for small inset elements like finding rows and code/data chips; `full` (9999px) for pills — buttons, the active nav item, and every tier badge. The mix signals the brand: rounded-but-controlled, never bubbly. Tier badges are always fully rounded pills so the certification result reads as a discrete, stamp-like mark.
+## Anatomy of a surface — band, statement, paper, band
 
-## Components
+The app shell is the studio room anatomy, adapted:
 
-**Buttons** are pill-shaped (`rounded.full`) with mono `label` type. `button-primary` fills with lime and ink text for the one key action on a screen (Verify, Upgrade); `button-primary-hover` darkens the lime to #A9D400. `button-secondary` is a bordered white pill (add a 1px `border-strong` outline in implementation — the schema has no border token) for secondary actions; `button-ghost` is text-only for tertiary actions. **input-text** is a white field with a `border` hairline, `md` radius, and a lime focus ring (`accent-strong`). **card** and **card-muted** are the primary containers — white or sunken, hairline border, `md` radius. **label** renders uppercase mono eyebrows in `on-surface-subtle`. **nav-item-active** uses the `accent-subtle` tint with `accent-strong` text. The five **badge-tier-*** components are the signature element: fully-rounded metallic pills, each carrying the tier name in mono label type. The four **finding-*** components share a white card body with `sm` radius and a 3px left border in their semantic colour — `success` (conforms), `warning` (minor gap), `error` (major gap), `info` (insufficient information) — so a reader can scan severity down the left edge; each shows the standard + clause (label), a plain-English summary (body), and a recommendation (body-sm).
+- **The top band** (52px, ink, sticky): the "alka**tera** verifier" wordmark, the mark, and the Verifier's surfaces as mono tabs (Verify · Dashboard · Settings — active carries a 3px accent underline), with a live mono note on the right. No desk-link — the independence signal.
+- **The statement**: an eyebrow in the accent, then the surface's one sentence — the tier and score on a result, the count on the dashboard — with supporting figures standing right, display-bold over mono labels.
+- **The paper**: work happens on gallery grey. Cream panels, hairline borders, radius 6. At most one saturated block per surface, and on the ink-led Verifier usually none.
+- **The bottom band** (ink, sticky): repurposed from the OS assistant band into the Verifier's **standing independence-and-scope strip** — "Independent · we verify any LCA, and we fail our own · every finding cites its clause" — plus quick actions (Verify an LCA, cmd-K).
 
-## Do's and Don'ts
+## The kit of parts
+
+**Actions** are pills, radius full. **Ink is the default act**; **outline** is the second act; the **accent** (teal) marks the one act the Verifier exists for (Verify); **ghost** for the rest. Lime is gone. **Tabs** are mono caps with a 3px accent rule under the active one. **Panels** are cream with a hairline at radius 6; the **accent panel** is the one saturated block, used sparingly. The **big number** is display-bold and tabular over a 70% mono label. **States are typographic** — small bold mono in a working tone, no pills, no backgrounds; the word and its colour are enough. The **tier** follows the same rule at statement scale: the verdict is a big word in its tier tone over a mono label, never a badge. **Fact rows** are a bold subject with mono meta to the right, separated by hairlines, revealing detail on approach.
+
+## Motion — layouts that breathe
+
+Nothing bounces and nothing spins; space itself moves. The **studio ease** is `cubic-bezier(0.2, 0.8, 0.2, 1)` — brisk, then settles soft, like a drawer on a damper. Tracks re-weight toward attention (the breathing grid, hovered track 1fr → 1.85fr, 450ms); facts rise 6px and fade in (280ms, delay 160ms); marks wake with a small rotate and scale (500ms); hover lift and colour are 150–200ms. `prefers-reduced-motion` is respected: when set, none of this moves.
+
+## Voice
+
+Statements, full stops. British English, always (colour, prioritise, organise; dates as 3 July, times as 14:00). **Never an em dash** — a comma, parentheses, a colon or a full stop; the middle dot (·) separates mono facts. The wordmark is always lowercase with **tera** in bold. Rooms and surfaces have plain names with a little pride. Quiet honesty: empty states say what is true and what to do next; nothing cheers, nothing apologises twice.
+
+## Do's and don'ts
 
 **Do**
-- Lead with ink and paper; let lime appear once or twice per screen as emphasis, not as a background.
-- Use the serif for headlines and section titles to reinforce the authoritative, report-like voice.
-- Show every verdict with its reasoning attached — pair each tier and finding with its cited clause and plain-English explanation.
-- Use the semantic finding colours consistently: green conforms, amber minor, red major, blue insufficient.
-- Keep depth flat: borders and spacing first, one soft shadow only for floating layers.
+- Lead with the number that matters, display-bold over a mono label.
+- Keep to gallery grey, cream and hairlines; spend the accent once or twice per surface.
+- Render every verdict and state typographically, with its colour carrying the meaning.
+- Keep the independence signal visible: no OS desk-link, the standing scope strip, "we fail our own".
 
 **Don't**
-- Don't flood the UI with lime or use bright lime for body text (it fails contrast) — use `accent-strong` for lime text.
-- Don't present a tier badge as a decorative score with no visible justification — that breaks the "fiercely transparent" promise.
-- Don't introduce heavy drop shadows, gradients-for-drama, or marketing-style hero flourishes.
-- Don't set long-form body copy in the serif, or mix a second serif — Playfair is for display only.
-- Don't add new ad-hoc colours for tiers or states; extend the token set instead so the ladder stays legible.
+- Don't reintroduce lime, serifs, drop shadows for drama, or nested boxes.
+- Don't put a number without its mono label, or a state in a filled pill.
+- Don't claim one of the four brand-room colours; the Verifier is ink-led with its own teal.
+- Don't add ad-hoc colours; extend this defined token set instead so the ladders stay legible.

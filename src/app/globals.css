@@ -1,8 +1,30 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/* The studio ease — brisk, then settles soft, like a drawer on a damper. */
+:root {
+  --ease-studio: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Numbers are always tabular (docs/design.md). */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Keyboard focus is always visible (WCAG 2.4.7); accent-strong meets AA on paper. */
 :focus-visible {
-  outline: 2px solid #52700a;
+  outline: 2px solid #0a5f52;
   outline-offset: 2px;
+}
+
+/* Layouts that breathe — but nothing moves when reduced motion is asked for. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
