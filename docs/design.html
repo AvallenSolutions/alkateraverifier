@@ -1,341 +1,136 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>alkatera Verifier — Design System</title>
+<title>alkatera verifier · studio design language</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    /* Colors */
-    --color-background: #FAF8F3;
-    --color-surface: #FFFFFF;
-    --color-surface-sunken: #F1EFE7;
-    --color-ink: #1C1B18;
-    --color-on-surface-muted: #5E5C55;
-    --color-on-surface-subtle: #8B887E;
-    --color-border: #E5E1D6;
-    --color-border-strong: #D3CEC1;
-    --color-accent: #C2F000;
-    --color-on-accent: #1C1B18;
-    --color-accent-strong: #52700A;
-    --color-accent-subtle: #EDF6C8;
-    --color-success: #3F7A34;
-    --color-on-success: #FFFFFF;
-    --color-warning: #C08A1E;
-    --color-on-warning: #1C1B18;
-    --color-error: #B4342A;
-    --color-on-error: #FFFFFF;
-    --color-info: #3A6B8C;
-    --color-on-info: #FFFFFF;
-    --color-tier-not-certified: #A0554A;
-    --color-tier-bronze: #B0763E;
-    --color-tier-silver: #9CA3AC;
-    --color-tier-gold: #C6A02A;
-    --color-tier-platinum: #5C7C8A;
-    --color-on-metal-light: #FFFFFF;
-    --color-on-metal-dark: #1C1B18;
-
-    /* Typography */
-    --font-serif: "Playfair Display", Georgia, serif;
-    --font-sans: "Inter", system-ui, sans-serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-
-    --type-display-family: var(--font-serif);
-    --type-display-size: 48px;   --type-display-weight: 600; --type-display-lh: 1.05; --type-display-ls: -0.01em;
-    --type-h1-family: var(--font-serif);
-    --type-h1-size: 34px;        --type-h1-weight: 600;      --type-h1-lh: 1.1;  --type-h1-ls: -0.01em;
-    --type-h2-family: var(--font-serif);
-    --type-h2-size: 26px;        --type-h2-weight: 600;      --type-h2-lh: 1.15;
-    --type-h3-family: var(--font-sans);
-    --type-h3-size: 18px;        --type-h3-weight: 600;      --type-h3-lh: 1.3;
-    --type-body-family: var(--font-sans);
-    --type-body-size: 16px;      --type-body-weight: 400;    --type-body-lh: 1.55;
-    --type-body-sm-family: var(--font-sans);
-    --type-body-sm-size: 14px;   --type-body-sm-weight: 400; --type-body-sm-lh: 1.5;
-    --type-caption-family: var(--font-sans);
-    --type-caption-size: 13px;   --type-caption-weight: 400; --type-caption-lh: 1.4;
-    --type-label-family: var(--font-mono);
-    --type-label-size: 12px;     --type-label-weight: 500;   --type-label-lh: 1.2; --type-label-ls: 0.08em;
-    --type-data-family: var(--font-mono);
-    --type-data-size: 14px;      --type-data-weight: 400;    --type-data-lh: 1.5;
-
-    /* Rounded */
-    --rounded-none: 0;
-    --rounded-sm: 6px;
-    --rounded-md: 10px;
-    --rounded-lg: 16px;
-    --rounded-full: 9999px;
-
-    /* Spacing */
-    --space-0: 0;
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 12px;
-    --space-4: 16px;
-    --space-5: 24px;
-    --space-6: 32px;
-    --space-7: 48px;
-    --space-8: 64px;
-
-    /* Elevation */
-    --shadow-float: 0 1px 2px rgba(28,27,24,0.06), 0 4px 12px rgba(28,27,24,0.04);
+  /* Mirror of docs/design.md — regenerate when the tokens change. */
+  :root{
+    --paper:#ECEAE3; --cream:#F2F1EA; --sunken:#E4E1D7; --ink:#1A1B1D; --on-ink:#F2F1EA;
+    --dim:#565650; --meta:#605F58; --hair:#D9D6CB; --hair-strong:#C9C5B8;
+    --accent:#0B6E5E; --accent-strong:#0A5F52; --accent-subtle:#D9E8E3;
+    --forest:#205E40; --cobalt:#2B46C0; --ochre:#DFA32B; --ochre-ink:#A97C14; --brick:#BF4B2A;
+    --good:#036B4E; --attention:#9A4708; --lost:#A81E2E; --hold:#5B21B6;
+    --t-nc:#A81E2E; --t-br:#8A5A22; --t-si:#59636E; --t-go:#856009; --t-pl:#3E5C76;
+    --ease:cubic-bezier(.2,.8,.2,1);
   }
-
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--color-background);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-size: var(--type-body-size);
-    line-height: var(--type-body-lh);
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 960px; margin: 0 auto; padding: var(--space-8) var(--space-5); }
-  header.page { border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-5); margin-bottom: var(--space-7); }
-  header.page h1 { font-family: var(--font-serif); font-size: var(--type-display-size); font-weight: var(--type-display-weight); line-height: var(--type-display-lh); letter-spacing: var(--type-display-ls); margin: 0 0 var(--space-2); }
-  header.page p { color: var(--color-on-surface-muted); margin: 0 0 var(--space-2); max-width: 60ch; }
-  header.page .note { font-family: var(--font-mono); font-size: var(--type-label-size); letter-spacing: var(--type-label-ls); text-transform: uppercase; color: var(--color-on-surface-subtle); }
-
-  section { margin-bottom: var(--space-8); }
-  .eyebrow { font-family: var(--font-mono); font-size: var(--type-label-size); font-weight: var(--type-label-weight); letter-spacing: var(--type-label-ls); text-transform: uppercase; color: var(--color-on-surface-subtle); display: block; margin-bottom: var(--space-2); }
-  h2.section { font-family: var(--font-serif); font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); line-height: var(--type-h2-lh); margin: 0 0 var(--space-5); }
-  .grid { display: grid; gap: var(--space-4); }
-  .cols-3 { grid-template-columns: repeat(3, 1fr); }
-  .cols-2 { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 680px) { .cols-3, .cols-2 { grid-template-columns: 1fr; } }
-
-  /* Colors */
-  .swatch { border: 1px solid var(--color-border); border-radius: var(--rounded-md); overflow: hidden; }
-  .swatch .chip { height: 72px; display: flex; align-items: center; padding: 0 var(--space-4); }
-  .swatch .chip span { font-family: var(--font-sans); font-size: var(--type-body-sm-size); }
-  .swatch .meta { padding: var(--space-3) var(--space-4); background: var(--color-surface); }
-  .swatch .meta .name { font-family: var(--font-mono); font-size: var(--type-label-size); }
-  .swatch .meta .hex { font-family: var(--font-mono); font-size: var(--type-label-size); color: var(--color-on-surface-muted); }
-
-  /* Typography specimens */
-  .spec { border-bottom: 1px solid var(--color-border); padding: var(--space-4) 0; display: flex; justify-content: space-between; gap: var(--space-5); align-items: baseline; }
-  .spec .meta { font-family: var(--font-mono); font-size: var(--type-label-size); color: var(--color-on-surface-muted); white-space: nowrap; text-align: right; }
-  .t-display { font-family: var(--type-display-family); font-size: var(--type-display-size); font-weight: var(--type-display-weight); line-height: var(--type-display-lh); letter-spacing: var(--type-display-ls); }
-  .t-h1 { font-family: var(--type-h1-family); font-size: var(--type-h1-size); font-weight: var(--type-h1-weight); line-height: var(--type-h1-lh); letter-spacing: var(--type-h1-ls); }
-  .t-h2 { font-family: var(--type-h2-family); font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); line-height: var(--type-h2-lh); }
-  .t-h3 { font-family: var(--type-h3-family); font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); line-height: var(--type-h3-lh); }
-  .t-body { font-family: var(--type-body-family); font-size: var(--type-body-size); font-weight: var(--type-body-weight); line-height: var(--type-body-lh); }
-  .t-body-sm { font-family: var(--type-body-sm-family); font-size: var(--type-body-sm-size); }
-  .t-caption { font-family: var(--type-caption-family); font-size: var(--type-caption-size); }
-  .t-label { font-family: var(--type-label-family); font-size: var(--type-label-size); font-weight: var(--type-label-weight); letter-spacing: var(--type-label-ls); text-transform: uppercase; }
-  .t-data { font-family: var(--type-data-family); font-size: var(--type-data-size); }
-
-  /* Spacing */
-  .space-row { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3); }
-  .space-row .bar { background: var(--color-accent-strong); height: 16px; border-radius: var(--rounded-sm); }
-  .space-row .meta { font-family: var(--font-mono); font-size: var(--type-label-size); color: var(--color-on-surface-muted); }
-
-  /* Radius */
-  .radius-box { height: 88px; background: var(--color-surface); border: 1px solid var(--color-border-strong); display: flex; align-items: flex-end; padding: var(--space-2); }
-  .radius-box .meta { font-family: var(--font-mono); font-size: var(--type-label-size); color: var(--color-on-surface-muted); }
-
-  /* Elevation */
-  .elev { background: var(--color-surface); border-radius: var(--rounded-md); padding: var(--space-5); }
-  .elev.border { border: 1px solid var(--color-border); }
-  .elev.float { box-shadow: var(--shadow-float); border: 1px solid var(--color-border); }
-  .elev .meta { font-family: var(--font-mono); font-size: var(--type-label-size); color: var(--color-on-surface-muted); margin-top: var(--space-2); }
-
-  /* Components */
-  .btn { font-family: var(--font-mono); font-size: var(--type-label-size); font-weight: var(--type-label-weight); letter-spacing: var(--type-label-ls); text-transform: uppercase; border-radius: var(--rounded-full); padding: 12px 20px; border: 0; cursor: pointer; }
-  .btn-primary { background: var(--color-accent); color: var(--color-on-accent); }
-  .btn-primary:hover { background: #A9D400; }
-  .btn-secondary { background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-border-strong); }
-  .btn-ghost { background: transparent; color: var(--color-ink); padding: 10px 14px; }
-  .input { font-family: var(--font-sans); font-size: var(--type-body-size); background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-border); border-radius: var(--rounded-md); padding: 10px 12px; width: 100%; }
-  .input:focus { outline: 2px solid var(--color-accent-strong); outline-offset: 1px; }
-  .card { background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-border); border-radius: var(--rounded-md); padding: var(--space-5); }
-  .card-muted { background: var(--color-surface-sunken); color: var(--color-ink); border: 1px solid var(--color-border); border-radius: var(--rounded-md); padding: var(--space-5); }
-  .nav-item-active { background: var(--color-accent-subtle); color: var(--color-accent-strong); font-family: var(--font-sans); font-size: var(--type-body-sm-size); font-weight: 600; border-radius: var(--rounded-sm); padding: 8px 12px; display: inline-block; }
-
-  .badge { font-family: var(--font-mono); font-size: var(--type-label-size); font-weight: var(--type-label-weight); letter-spacing: var(--type-label-ls); text-transform: uppercase; border-radius: var(--rounded-full); padding: 6px 14px; display: inline-block; }
-  .badge-not-certified { background: var(--color-tier-not-certified); color: var(--color-on-metal-light); }
-  .badge-bronze { background: var(--color-tier-bronze); color: var(--color-on-metal-light); }
-  .badge-silver { background: var(--color-tier-silver); color: var(--color-on-metal-dark); }
-  .badge-gold { background: var(--color-tier-gold); color: var(--color-on-metal-dark); }
-  .badge-platinum { background: var(--color-tier-platinum); color: var(--color-on-metal-light); }
-
-  .finding { background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-border); border-left-width: 3px; border-radius: var(--rounded-sm); padding: var(--space-4); margin-bottom: var(--space-3); }
-  .finding.conforms { border-left-color: var(--color-success); }
-  .finding.minor { border-left-color: var(--color-warning); }
-  .finding.major { border-left-color: var(--color-error); }
-  .finding.insufficient { border-left-color: var(--color-info); }
-  .finding .clause { font-family: var(--font-mono); font-size: var(--type-label-size); letter-spacing: var(--type-label-ls); text-transform: uppercase; color: var(--color-on-surface-subtle); }
-  .finding .summary { font-family: var(--font-sans); font-size: var(--type-body-size); margin: var(--space-1) 0; }
-  .finding .rec { font-family: var(--font-sans); font-size: var(--type-body-sm-size); color: var(--color-on-surface-muted); }
-
-  /* Do / Don't */
-  .dd { border-radius: var(--rounded-md); padding: var(--space-5); border: 1px solid var(--color-border); }
-  .dd h3 { margin: 0 0 var(--space-3); font-family: var(--font-sans); font-size: var(--type-h3-size); }
-  .dd ul { margin: 0; padding-left: var(--space-5); }
-  .dd li { margin-bottom: var(--space-2); font-size: var(--type-body-sm-size); }
-  .dd.do h3 { color: var(--color-success); }
-  .dd.dont h3 { color: var(--color-error); }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--paper);color:var(--ink);font:14px/1.5 Inter,system-ui,sans-serif;padding:0 0 64px}
+  .band{background:var(--ink);color:var(--on-ink);padding:14px 24px;display:flex;gap:12px;align-items:center}
+  .wordmark{font-family:'Space Grotesk',sans-serif;font-size:15px}
+  .wordmark b{font-weight:700}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:.95;letter-spacing:-.035em;margin:48px 0 8px}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-strong);margin-top:40px}
+  .muted{color:var(--dim)}
+  .meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--meta)}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));margin-top:12px}
+  .swatch{border:1px solid var(--hair);border-radius:6px;overflow:hidden;background:var(--cream)}
+  .swatch .chip{height:64px}
+  .swatch .info{padding:8px 10px}
+  .swatch .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px}
+  .panel{background:var(--cream);border:1px solid var(--hair);border-radius:6px;padding:24px;margin-top:12px}
+  .pill{display:inline-block;border-radius:9999px;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin:0 8px 8px 0}
+  .tiers{display:flex;gap:32px;flex-wrap:wrap;align-items:baseline;margin-top:12px}
+  .tier{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:34px;letter-spacing:-.02em}
+  .states span{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-right:24px}
+  table{border-collapse:collapse;width:100%;margin-top:12px}
+  th,td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--hair);vertical-align:baseline}
+  th{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--meta)}
 </style>
 </head>
 <body>
-<div class="wrap">
+  <div class="band">
+    <svg width="20" height="20" viewBox="0 0 100 100" fill="none" stroke="#0B6E5E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><circle cx="50" cy="50" r="38"/><path d="M33 51 L45 64 L69 37"/></svg>
+    <span class="wordmark">alka<b>tera</b></span>
+    <span class="meta" style="color:rgba(242,241,234,.6)">VERIFIER · STUDIO DESIGN LANGUAGE · V1</span>
+  </div>
+  <div class="wrap">
+    <h1>A gallery, not a dashboard.</h1>
+    <p class="muted" style="max-width:640px">The alkatera·OS studio language, adapted for the independent Verifier: gallery-grey paper, cream panels, hairlines, ink-led with one reserved teal accent, three type voices, typographic verdicts. Source of truth: <code>docs/design.md</code>.</p>
 
-  <header class="page">
-    <h1>alkatera Verifier</h1>
-    <p>Light, paper-toned, ink-led design system for an independent LCA verification web app — editorial serif display, restrained lime highlight, and a metallic certification-tier scale.</p>
-    <div class="note">Human-readable mirror of docs/design.md — the source of truth</div>
-  </header>
-
-  <section>
-    <span class="eyebrow">01</span>
-    <h2 class="section">Colors</h2>
-    <div class="grid cols-3">
-      <div class="swatch"><div class="chip" style="background:var(--color-background)"><span style="color:var(--color-ink)">Aa background</span></div><div class="meta"><div class="name">background</div><div class="hex">#FAF8F3</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-surface)"><span style="color:var(--color-ink)">Aa surface</span></div><div class="meta"><div class="name">surface</div><div class="hex">#FFFFFF</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-surface-sunken)"><span style="color:var(--color-ink)">Aa sunken</span></div><div class="meta"><div class="name">surface-sunken</div><div class="hex">#F1EFE7</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-ink)"><span style="color:#fff">Aa ink</span></div><div class="meta"><div class="name">ink</div><div class="hex">#1C1B18</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-on-surface-muted)"><span style="color:#fff">Aa muted</span></div><div class="meta"><div class="name">on-surface-muted</div><div class="hex">#5E5C55</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-on-surface-subtle)"><span style="color:#fff">Aa subtle</span></div><div class="meta"><div class="name">on-surface-subtle</div><div class="hex">#8B887E</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-border)"><span style="color:var(--color-ink)">border</span></div><div class="meta"><div class="name">border</div><div class="hex">#E5E1D6</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-border-strong)"><span style="color:var(--color-ink)">border-strong</span></div><div class="meta"><div class="name">border-strong</div><div class="hex">#D3CEC1</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-accent)"><span style="color:var(--color-on-accent)">Aa accent</span></div><div class="meta"><div class="name">accent</div><div class="hex">#C2F000</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-accent-strong)"><span style="color:#fff">Aa accent-strong</span></div><div class="meta"><div class="name">accent-strong</div><div class="hex">#52700A</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-accent-subtle)"><span style="color:var(--color-accent-strong)">Aa accent-subtle</span></div><div class="meta"><div class="name">accent-subtle</div><div class="hex">#EDF6C8</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-success)"><span style="color:var(--color-on-success)">success</span></div><div class="meta"><div class="name">success</div><div class="hex">#3F7A34</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-warning)"><span style="color:var(--color-on-warning)">warning</span></div><div class="meta"><div class="name">warning</div><div class="hex">#C08A1E</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-error)"><span style="color:var(--color-on-error)">error</span></div><div class="meta"><div class="name">error</div><div class="hex">#B4342A</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-info)"><span style="color:var(--color-on-info)">info</span></div><div class="meta"><div class="name">info</div><div class="hex">#3A6B8C</div></div></div>
-    </div>
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:var(--space-6) 0 var(--space-4)">Certification tiers (metallic ladder)</h3>
-    <div class="grid cols-3">
-      <div class="swatch"><div class="chip" style="background:var(--color-tier-not-certified)"><span style="color:#fff">Not Certified</span></div><div class="meta"><div class="name">tier-not-certified</div><div class="hex">#A0554A</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-tier-bronze)"><span style="color:#fff">Bronze</span></div><div class="meta"><div class="name">tier-bronze</div><div class="hex">#B0763E</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-tier-silver)"><span style="color:var(--color-ink)">Silver</span></div><div class="meta"><div class="name">tier-silver</div><div class="hex">#9CA3AC</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-tier-gold)"><span style="color:var(--color-ink)">Gold</span></div><div class="meta"><div class="name">tier-gold</div><div class="hex">#C6A02A</div></div></div>
-      <div class="swatch"><div class="chip" style="background:var(--color-tier-platinum)"><span style="color:#fff">Platinum</span></div><div class="meta"><div class="name">tier-platinum</div><div class="hex">#5C7C8A</div></div></div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">02</span>
-    <h2 class="section">Typography</h2>
-    <div class="spec"><div class="t-display">Verify the claim</div><div class="meta">display · Playfair 48/600</div></div>
-    <div class="spec"><div class="t-h1">Verification report</div><div class="meta">h1 · Playfair 34/600</div></div>
-    <div class="spec"><div class="t-h2">Findings by clause</div><div class="meta">h2 · Playfair 26/600</div></div>
-    <div class="spec"><div class="t-h3">Data quality assessment</div><div class="meta">h3 · Inter 18/600</div></div>
-    <div class="spec"><div class="t-body">The verifier re-checks the calculations and tests each requirement clause by clause.</div><div class="meta">body · Inter 16/400</div></div>
-    <div class="spec"><div class="t-body-sm">Collect verified primary data from your top three contributors.</div><div class="meta">body-sm · Inter 14/400</div></div>
-    <div class="spec"><div class="t-caption">Adapted from ISO 14044:2006 §4.2.3.6</div><div class="meta">caption · Inter 13/400</div></div>
-    <div class="spec"><div class="t-label">ISO 14044 · §4.2.3.6</div><div class="meta">label · Plex Mono 12/500 · 0.08em</div></div>
-    <div class="spec"><div class="t-data">0.333 kg CO₂e</div><div class="meta">data · Plex Mono 14/400</div></div>
-  </section>
-
-  <section>
-    <span class="eyebrow">03</span>
-    <h2 class="section">Spacing</h2>
-    <div class="space-row"><div class="bar" style="width:var(--space-1)"></div><div class="meta">1 · 4px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-2)"></div><div class="meta">2 · 8px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-3)"></div><div class="meta">3 · 12px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-4)"></div><div class="meta">4 · 16px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-5)"></div><div class="meta">5 · 24px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-6)"></div><div class="meta">6 · 32px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-7)"></div><div class="meta">7 · 48px</div></div>
-    <div class="space-row"><div class="bar" style="width:var(--space-8)"></div><div class="meta">8 · 64px</div></div>
-  </section>
-
-  <section>
-    <span class="eyebrow">04</span>
-    <h2 class="section">Radius</h2>
-    <div class="grid cols-3">
-      <div class="radius-box" style="border-radius:var(--rounded-none)"><span class="meta">none · 0</span></div>
-      <div class="radius-box" style="border-radius:var(--rounded-sm)"><span class="meta">sm · 6px</span></div>
-      <div class="radius-box" style="border-radius:var(--rounded-md)"><span class="meta">md · 10px</span></div>
-      <div class="radius-box" style="border-radius:var(--rounded-lg)"><span class="meta">lg · 16px</span></div>
-      <div class="radius-box" style="border-radius:var(--rounded-full)"><span class="meta">full · 9999px</span></div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">05</span>
-    <h2 class="section">Elevation &amp; Depth</h2>
-    <div class="grid cols-3">
-      <div class="elev"><div class="t-h3">Flat</div><div class="meta">surface, no border</div></div>
-      <div class="elev border"><div class="t-h3">Bordered</div><div class="meta">1px border — default cards</div></div>
-      <div class="elev float"><div class="t-h3">Floating</div><div class="meta">soft shadow — modals, toasts only</div></div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">06</span>
-    <h2 class="section">Components</h2>
-
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:0 0 var(--space-4)">Buttons</h3>
-    <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;margin-bottom:var(--space-6)">
-      <button class="btn btn-primary">Verify LCA</button>
-      <button class="btn btn-primary" style="background:#A9D400">Verify LCA (hover)</button>
-      <button class="btn btn-secondary">Download report</button>
-      <button class="btn btn-ghost">Cancel</button>
+    <p class="eyebrow">The ground</p>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:var(--paper)"></div><div class="info"><div class="name">paper</div><div class="meta">#ECEAE3</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--cream)"></div><div class="info"><div class="name">cream</div><div class="meta">#F2F1EA</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--hair)"></div><div class="info"><div class="name">hairline</div><div class="meta">#D9D6CB</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--dim)"></div><div class="info"><div class="name">dim</div><div class="meta">#565650</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--ink)"></div><div class="info"><div class="name">ink</div><div class="meta">#1A1B1D</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="info"><div class="name">accent (reserved)</div><div class="meta">#0B6E5E</div></div></div>
     </div>
 
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:0 0 var(--space-4)">Input &amp; nav</h3>
-    <div class="grid cols-2" style="margin-bottom:var(--space-6);align-items:center">
-      <input class="input" placeholder="Company name">
-      <div><span class="nav-item-active">Verify</span></div>
+    <p class="eyebrow">The rooms · defined, not claimed by the verifier</p>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:var(--forest)"></div><div class="info"><div class="name">forest</div><div class="meta">#205E40</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--cobalt)"></div><div class="info"><div class="name">cobalt</div><div class="meta">#2B46C0</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--ochre)"></div><div class="info"><div class="name">ochre</div><div class="meta">#DFA32B · ink text</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--brick)"></div><div class="info"><div class="name">brick</div><div class="meta">#BF4B2A</div></div></div>
     </div>
 
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:0 0 var(--space-4)">Cards</h3>
-    <div class="grid cols-2" style="margin-bottom:var(--space-6)">
-      <div class="card"><span class="t-label" style="color:var(--color-on-surface-subtle)">Climate impact</span><div class="t-h2" style="margin-top:var(--space-2)">0.333 kg CO₂e</div></div>
-      <div class="card-muted"><span class="t-label" style="color:var(--color-on-surface-subtle)">Data quality</span><div class="t-h2" style="margin-top:var(--space-2)">64% · Fair</div></div>
+    <p class="eyebrow">Three voices</p>
+    <div class="panel">
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:56px;line-height:.95;letter-spacing:-.035em">69 of 100.</div>
+      <div class="meta" style="margin-top:6px">STATEMENT · SPACE GROTESK BOLD · 40–68PX · LEADING 0.95 · TRACKING −3.5% · ENDS WITH A FULL STOP</div>
+      <table>
+        <tr><th>Style</th><th>Face</th><th>Size</th><th>Use</th></tr>
+        <tr><td><b>Statement</b></td><td>Space Grotesk Bold</td><td class="meta">40–68px</td><td>The surface's one sentence.</td></tr>
+        <tr><td><b>Big number</b></td><td>Space Grotesk Bold, tabular</td><td class="meta">27–32px</td><td>A figure over a mono label.</td></tr>
+        <tr><td><b>Card title</b></td><td>Space Grotesk SemiBold</td><td class="meta">13.5–15px</td><td>Names: products, standards.</td></tr>
+        <tr><td><b>Body</b></td><td>Inter Regular</td><td class="meta">13–14px / 1.5</td><td>Sentences and quiet detail.</td></tr>
+        <tr><td><b>Eyebrow</b></td><td>JetBrains Mono Bold</td><td class="meta">9.5–10.5px · caps · +22%</td><td>Sections, tabs, number labels.</td></tr>
+        <tr><td><b>Meta</b></td><td>JetBrains Mono</td><td class="meta">10–11px</td><td>Times, ages, hexes: the margins.</td></tr>
+      </table>
     </div>
 
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:0 0 var(--space-4)">Certification tier badges</h3>
-    <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-6)">
-      <span class="badge badge-not-certified">Not Certified</span>
-      <span class="badge badge-bronze">Bronze</span>
-      <span class="badge badge-silver">Silver</span>
-      <span class="badge badge-gold">Gold</span>
-      <span class="badge badge-platinum">Platinum</span>
+    <p class="eyebrow">Actions · pills, radius full</p>
+    <div class="panel">
+      <span class="pill" style="background:var(--ink);color:var(--on-ink)">Default act</span>
+      <span class="pill" style="background:var(--accent);color:var(--on-ink)">Verify (the one act)</span>
+      <span class="pill" style="background:transparent;color:var(--ink);border:1px solid var(--hair-strong)">Second act</span>
+      <span class="pill" style="background:transparent;color:var(--dim)">Ghost</span>
     </div>
 
-    <h3 style="font-family:var(--font-sans);font-size:var(--type-h3-size);margin:0 0 var(--space-4)">Findings</h3>
-    <div class="finding conforms"><div class="clause">Conforms · ISO 14067 §6.4.9.3</div><div class="summary">Biogenic CO₂ is correctly reported separately from fossil CO₂.</div></div>
-    <div class="finding minor"><div class="clause">Minor gap · ISO 14044 §4.5.3</div><div class="summary">No formal sensitivity analysis is included.</div><div class="rec">To improve: add a ±20% sensitivity pass on the top three contributors.</div></div>
-    <div class="finding major"><div class="clause">Major gap · ISO 14044 §4.2.3.6</div><div class="summary">All 14 inputs rely on secondary data, so this study is capped at Bronze.</div><div class="rec">To improve: collect verified primary data from your top three contributors.</div></div>
-    <div class="finding insufficient"><div class="clause">Insufficient information · ISO 14044 §4.3.4</div><div class="summary">Allocation basis could not be determined from the report.</div><div class="rec">Provide the allocation method (mass, energy, or economic) used.</div></div>
-  </section>
-
-  <section>
-    <span class="eyebrow">07</span>
-    <h2 class="section">Do's and Don'ts</h2>
-    <div class="grid cols-2">
-      <div class="dd do">
-        <h3>✓ Do</h3>
-        <ul>
-          <li>Lead with ink and paper; let lime appear once or twice per screen as emphasis.</li>
-          <li>Use the serif for headlines and section titles to reinforce the authoritative voice.</li>
-          <li>Show every verdict with its cited clause and plain-English reasoning attached.</li>
-          <li>Use the semantic finding colours consistently: green conforms, amber minor, red major, blue insufficient.</li>
-          <li>Keep depth flat: borders and spacing first, one soft shadow only for floating layers.</li>
-        </ul>
+    <p class="eyebrow">The certification ladder · typographic, no pills</p>
+    <div class="panel">
+      <div class="tiers">
+        <span class="tier" style="color:var(--t-nc)">Not Certified</span>
+        <span class="tier" style="color:var(--t-br)">Bronze</span>
+        <span class="tier" style="color:var(--t-si)">Silver</span>
+        <span class="tier" style="color:var(--t-go)">Gold</span>
+        <span class="tier" style="color:var(--t-pl)">Platinum</span>
       </div>
-      <div class="dd dont">
-        <h3>✗ Don't</h3>
-        <ul>
-          <li>Don't flood the UI with lime or set body text in bright lime (it fails contrast) — use accent-strong.</li>
-          <li>Don't present a tier badge as a decorative score with no visible justification.</li>
-          <li>Don't introduce heavy drop shadows, gradients-for-drama, or marketing hero flourishes.</li>
-          <li>Don't set long-form body copy in the serif, or mix in a second serif.</li>
-          <li>Don't add ad-hoc colours for tiers or states; extend the token set instead.</li>
-        </ul>
-      </div>
+      <p class="meta" style="margin-top:10px">#A81E2E · #8A5A22 · #59636E · #856009 · #3E5C76 — ALL AA AS TEXT ON PAPER AND CREAM</p>
     </div>
-  </section>
 
-</div>
+    <p class="eyebrow">Working tones · states, never decoration</p>
+    <div class="panel states">
+      <span style="color:var(--good)">Conforms</span>
+      <span style="color:var(--attention)">Minor gap</span>
+      <span style="color:var(--lost)">Major gap</span>
+      <span style="color:var(--hold)">Insufficient info</span>
+      <p class="muted" style="margin-top:10px">States are typographic: small bold mono in a working tone. No badge pills, no backgrounds; the word and its colour are enough.</p>
+    </div>
+
+    <p class="eyebrow">Anatomy · band, statement, paper, band</p>
+    <div class="panel">
+      <p class="muted">Sticky ink band on top (wordmark, mark, mono tabs with a 3px accent underline). The statement: teal eyebrow, one sentence, figures right over mono labels. The paper: cream panels, hairlines, radius 6, at most one saturated block (usually none — the Verifier is ink-led). Sticky ink band at the bottom: the standing independence-and-scope strip, plus the one quick action. No desk-link into alkatera·OS.</p>
+    </div>
+
+    <p class="eyebrow">Motion · layouts that breathe</p>
+    <div class="panel">
+      <table>
+        <tr><td>Everything</td><td class="meta">cubic-bezier(0.2, 0.8, 0.2, 1)</td></tr>
+        <tr><td>Hover lift / colour</td><td class="meta">150–200ms</td></tr>
+        <tr><td>Facts reveal (rise 6px + fade)</td><td class="meta">280ms, delay 160ms</td></tr>
+        <tr><td>Grid tracks re-weight</td><td class="meta">450ms</td></tr>
+        <tr><td>Marks wake (rotate 8°, scale 1.1)</td><td class="meta">500ms</td></tr>
+      </table>
+      <p class="muted" style="margin-top:10px">Nothing bounces and nothing spins. prefers-reduced-motion: nothing moves.</p>
+    </div>
+  </div>
 </body>
 </html>

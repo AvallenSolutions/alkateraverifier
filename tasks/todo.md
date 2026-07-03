@@ -19,9 +19,9 @@ verifications (Anthropic/Stripe/Sentry/Vercel/PostHog/Resend) — those can land
 
 ## Open design choices (resolve during build, with options for Tim)
 
-- [ ] Reserved Verifier accent (distinct from the four OS rooms) — bring 2–3 swatches.
-- [ ] Verifier chop mark (stamp / tick / seal geometry).
-- [ ] `tier-tone` token set — five AA-legible values for the metallic ladder as text.
+- [x] Reserved Verifier accent (distinct from the four OS rooms) — bring 2–3 swatches.
+- [x] Verifier chop mark (stamp / tick / seal geometry).
+- [x] `tier-tone` token set — five AA-legible values for the metallic ladder as text.
 
 ---
 
@@ -29,7 +29,7 @@ verifications (Anthropic/Stripe/Sentry/Vercel/PostHog/Resend) — those can land
 
 - [x] Rewrite `docs/design.md` to the studio language adapted for the Verifier
       (palette, three voices, marks, room anatomy, kit of parts, motion, voice).
-- [ ] Regenerate `docs/design.html` mirror to match.
+- [x] Regenerate `docs/design.html` mirror to match.
 
 ## R1 — Token + type foundation
 
@@ -47,51 +47,51 @@ verifications (Anthropic/Stripe/Sentry/Vercel/PostHog/Resend) — those can land
 
 ## R2 — Kit of parts (primitives)
 
-- [ ] Button: ink default / outline second / accent (the one act) / ghost — pills, radius full.
+- [x] Button: ink default / outline second / accent (the one act) / ghost — pills, radius full.
       Replaces every lime CTA.
-- [ ] Panel (cream + hairline r6), AccentPanel (the one saturated block, used sparingly).
-- [ ] Eyebrow/Label (mono caps), BigNumber (tabular + mono label at 70%).
-- [ ] Tabs (mono caps + 3px rule), Input (cream, hairline).
-- [ ] StateText (typographic states, mono, no pill), FactRow (bold subject, mono meta).
-- [ ] Marks: the Verifier mark component (8% on paper, cropped by corner; wake on hover).
-- [ ] RoomBand (sticky top) + InkBand (sticky bottom, independence/scope strip).
+- [x] Panel (cream + hairline r6), AccentPanel (the one saturated block, used sparingly).
+- [x] Eyebrow/Label (mono caps), BigNumber (tabular + mono label at 70%).
+- [x] Tabs (mono caps + 3px rule), Input (cream, hairline).
+- [x] StateText (typographic states, mono, no pill), FactRow (bold subject, mono meta).
+- [x] Marks: the Verifier mark component (8% on paper, cropped by corner; wake on hover).
+- [x] RoomBand (sticky top) + InkBand (sticky bottom, independence/scope strip).
 
 ## R3 — App shell + core surfaces
 
-- [ ] `(app)/layout.tsx`: RoomBand + InkBand shell; drop AppHeader.
-- [ ] Verify flow: VerifyFlow / UploadDropzone / StandardsPicker → statement + cream panels + mono.
-- [ ] Result page: typographic tier + score big-number; CalcChecksTable → fact rows /
+- [x] `(app)/layout.tsx`: RoomBand + InkBand shell; drop AppHeader.
+- [x] Verify flow: VerifyFlow / UploadDropzone / StandardsPicker → statement + cream panels + mono.
+- [x] Result page: typographic tier + score big-number; CalcChecksTable → fact rows /
       typographic pass-fail; FindingItem → mono state, hairline, reveal-on-hover; gate banner;
       low-confidence + failed/retry states; UpgradeCTA (accent pill); critical-review line.
-- [ ] TierBadge → typographic Tier component (result, dashboard, badge).
-- [ ] Loading skeletons + empty states in the new language.
+- [x] TierBadge → typographic Tier component (result, dashboard, badge).
+- [x] Loading skeletons + empty states in the new language.
 
 ## R4 — Remaining surfaces
 
-- [ ] Dashboard: VerificationList → fact rows + typographic tier; empty state.
-- [ ] Settings: profile form (studio input) + payment history (fact rows).
-- [ ] Marketing landing: hero as statement, poster blocks (the rooms idiom), pricing,
+- [x] Dashboard: VerificationList → fact rows + typographic tier; empty state.
+- [x] Settings: profile form (studio input) + payment history (fact rows).
+- [x] Marketing landing: hero as statement, poster blocks (the rooms idiom), pricing,
       "we will fail our own reports", tracked alkatera referral.
-- [ ] Sign-in / sign-up in the new language.
-- [ ] Public badge page: the certificate as a poster surface (statement tier + fact-row
+- [x] Sign-in / sign-up in the new language.
+- [x] Public badge page: the certificate as a poster surface (statement tier + fact-row
       findings summary), tracked referral.
-- [ ] Toast / Banner in the new language.
+- [x] Toast / Banner in the new language.
 
 ## R5 — Motion
 
-- [ ] Studio ease everywhere; hover lift/colour (150–200ms); facts reveal (rise 6px + fade,
+- [x] Studio ease everywhere; hover lift/colour (150–200ms); facts reveal (rise 6px + fade,
       280ms delay 160ms); marks wake (rotate/scale, 500ms); breathing grid where it fits
       (findings / dashboard). All behind prefers-reduced-motion.
 
 ## R6 — Verify
 
-- [ ] Report PDF (`generate.tsx`): restyle to new palette/type. Register Space Grotesk +
+- [x] Report PDF (`generate.tsx`): restyle to new palette/type. Register Space Grotesk +
       JetBrains Mono via @react-pdf Font (built-ins are Times/Helvetica/Courier).
-- [ ] Update tests asserting old copy/labels (dashboard tier text, TierBadge render, etc.).
-- [ ] tsc / lint / vitest green; production build clean.
-- [ ] Browser pass: desktop + 375px, no horizontal scroll; every surface.
-- [ ] axe pass on new palette; measure tier-tone + finding-tone contrast (the known risk).
-- [ ] Screenshots of each surface for sign-off.
+- [x] Update tests asserting old copy/labels (dashboard tier text, TierBadge render, etc.).
+- [x] tsc / lint / vitest green; production build clean.
+- [x] Browser pass: desktop + 375px, no horizontal scroll; every surface.
+- [x] axe pass on new palette; measure tier-tone + finding-tone contrast (the known risk).
+- [x] Screenshots of each surface for sign-off.
 
 ## Sequencing
 
@@ -99,4 +99,17 @@ Recommend doing R0–R6 now, pre-launch, on its own branch; the credential-gated
 verifications (live magic moment, Stripe, Sentry, Vercel deploy, PostHog) are unaffected
 and can happen before, during, or after.
 
-## Review (to fill in on completion)
+## Review (completed)
+
+- All seven stages done on `redesign/studio-language`. Full re-skin, no data-layer changes.
+- Resolved choices: reserved accent = deep teal #0B6E5E (Tim saw it at the R1 checkpoint and
+  carried on; a one-token swap if he changes his mind); mark = ring + tick (the OS ring riffed
+  into a verification stamp); tier tones = #A81E2E / #8A5A22 / #59636E / #856009 / #3E5C76,
+  all measured AA as text on paper and cream.
+- AA deviations from the guideline sheet, deliberate: dim #6F6F68 → #565650, meta #8A897F →
+  #605F58, and ochre-ink-as-gold darkened to #856009 — the guideline values fail WCAG AA at
+  small text sizes; the studio look is preserved.
+- Notes for later: report PDF uses built-in Helvetica/Courier as stand-ins (registering real
+  Space Grotesk/JetBrains Mono TTFs via Font.register is a follow-up); the OS 'breathing grid'
+  idiom fits a future poster-block desk, not the Verifier's current single-column surfaces —
+  facts-reveal + hover + mark styling shipped instead; landing screenshots in chat for sign-off.

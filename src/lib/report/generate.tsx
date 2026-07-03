@@ -11,9 +11,12 @@ import type { Tier } from "@/types/verification";
 
 /**
  * Verification report PDF (TASK-037, FR-008): tier, score, gates,
- * calculation checks, cited findings, and strictly scoped disclaimer.
- * Built-in PDF fonts stand in for the web stack: Times (serif display),
- * Helvetica (body), Courier (data).
+ * calculation checks, cited findings, and strictly scoped disclaimer —
+ * in the studio language (docs/design.md): gallery-grey paper, cream
+ * panels, hairlines, typographic tier. Built-in PDF fonts stand in for
+ * the web stack (Helvetica-Bold for Space Grotesk, Helvetica for Inter,
+ * Courier for JetBrains Mono); registering the real faces via
+ * Font.register needs bundled TTFs and is a follow-up.
  */
 
 export interface ReportData {
@@ -53,11 +56,11 @@ const TIER_LABELS: Record<Tier, string> = {
 };
 
 const TIER_COLOURS: Record<Tier, string> = {
-  not_certified: "#A0554A",
-  bronze: "#9A6532",
-  silver: "#9CA3AC",
-  gold: "#C6A02A",
-  platinum: "#54707D",
+  not_certified: "#A81E2E",
+  bronze: "#8A5A22",
+  silver: "#59636E",
+  gold: "#856009",
+  platinum: "#3E5C76",
 };
 
 const RESULT_LABELS: Record<string, string> = {
@@ -67,70 +70,80 @@ const RESULT_LABELS: Record<string, string> = {
   insufficient_info: "INSUFFICIENT INFO",
 };
 
+// Working tones (docs/design.md) — states, never decoration.
 const RESULT_COLOURS: Record<string, string> = {
-  conforms: "#3F7A34",
-  minor_gap: "#C08A1E",
-  major_gap: "#B4342A",
-  insufficient_info: "#3A6B8C",
+  conforms: "#036B4E",
+  minor_gap: "#9A4708",
+  major_gap: "#A81E2E",
+  insufficient_info: "#5B21B6",
 };
+
+const TONE_GOOD = "#036B4E";
+const TONE_LOST = "#A81E2E";
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "#FAF8F3",
-    color: "#1C1B18",
+    backgroundColor: "#ECEAE3", // paper
+    color: "#1A1B1D", // ink
     padding: 48,
     fontSize: 10,
     fontFamily: "Helvetica",
   },
   eyebrow: {
-    fontFamily: "Courier",
+    fontFamily: "Courier-Bold",
     fontSize: 8,
-    letterSpacing: 1.5,
-    color: "#8B887E",
+    letterSpacing: 2,
+    color: "#0A5F52", // accent-strong
     marginBottom: 6,
   },
-  title: { fontFamily: "Times-Bold", fontSize: 22, marginBottom: 4 },
-  meta: { fontFamily: "Courier", fontSize: 8, color: "#5E5C55" },
+  title: { fontFamily: "Helvetica-Bold", fontSize: 24, marginBottom: 4 },
+  meta: { fontFamily: "Courier", fontSize: 8, color: "#605F58" },
   tierRow: {
     flexDirection: "row",
-    alignItems: "center",
-    marginTop: 16,
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+    marginTop: 18,
     marginBottom: 8,
   },
-  tierPill: {
-    borderRadius: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 14,
-    color: "#FFFFFF",
-    fontFamily: "Courier-Bold",
-    fontSize: 11,
-    letterSpacing: 1,
+  // The verdict is typographic (docs/design.md § tier): a big word in its
+  // tier tone over a mono label. No pill, no saturated block.
+  tierWord: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 34,
+    letterSpacing: -0.5,
   },
-  score: { marginLeft: 12, fontFamily: "Courier", fontSize: 11 },
+  tierLabel: {
+    fontFamily: "Courier",
+    fontSize: 7,
+    letterSpacing: 1.5,
+    color: "#565650",
+    marginTop: 3,
+  },
+  score: { fontFamily: "Courier", fontSize: 11, color: "#1A1B1D" },
   section: { marginTop: 18 },
-  sectionTitle: { fontFamily: "Times-Bold", fontSize: 14, marginBottom: 6 },
+  sectionTitle: { fontFamily: "Helvetica-Bold", fontSize: 14, marginBottom: 6 },
   card: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#F2F1EA", // cream
     borderWidth: 1,
-    borderColor: "#E5E1D6",
-    borderRadius: 4,
+    borderColor: "#D9D6CB", // hairline
+    borderRadius: 6,
     padding: 10,
     marginBottom: 6,
   },
   row: { flexDirection: "row", justifyContent: "space-between" },
   label: {
-    fontFamily: "Courier",
+    fontFamily: "Courier-Bold",
     fontSize: 7,
-    letterSpacing: 1,
-    color: "#8B887E",
+    letterSpacing: 1.5,
+    color: "#605F58",
   },
-  body: { fontSize: 9, lineHeight: 1.5, color: "#1C1B18" },
-  muted: { fontSize: 8, lineHeight: 1.5, color: "#5E5C55" },
+  body: { fontSize: 9, lineHeight: 1.5, color: "#1A1B1D" },
+  muted: { fontSize: 8, lineHeight: 1.5, color: "#565650" },
   resultChip: { fontFamily: "Courier-Bold", fontSize: 8 },
   disclaimer: {
     marginTop: 20,
     borderTopWidth: 1,
-    borderTopColor: "#E5E1D6",
+    borderTopColor: "#D9D6CB",
     paddingTop: 10,
   },
 });
@@ -145,10 +158,10 @@ function ReportDocument({ data }: { data: ReportData }) {
 
   return (
     <Document
-      title={`LCA Verification Report — ${data.productName ?? data.verificationId}`}
+      title={`LCA Verification Report · ${data.productName ?? data.verificationId}`}
     >
       <Page size="A4" style={styles.page}>
-        <Text style={styles.eyebrow}>ALKATERA LCA VERIFIER — VERIFICATION REPORT</Text>
+        <Text style={styles.eyebrow}>ALKATERA VERIFIER · VERIFICATION REPORT</Text>
         <Text style={styles.title}>{data.productName ?? "LCA Verification"}</Text>
         <Text style={styles.meta}>
           Verification {data.verificationId}
@@ -161,11 +174,14 @@ function ReportDocument({ data }: { data: ReportData }) {
         </Text>
 
         <View style={styles.tierRow}>
-          <Text
-            style={[styles.tierPill, { backgroundColor: TIER_COLOURS[data.tier] }]}
-          >
-            {TIER_LABELS[data.tier]}
-          </Text>
+          <View>
+            <Text
+              style={[styles.tierWord, { color: TIER_COLOURS[data.tier] }]}
+            >
+              {TIER_LABELS[data.tier]}
+            </Text>
+            <Text style={styles.tierLabel}>VERDICT</Text>
+          </View>
           <Text style={styles.score}>
             Score {data.score ?? "—"}/100 · Conforms on {conforms} of{" "}
             {data.findings.length} clauses
@@ -181,7 +197,7 @@ function ReportDocument({ data }: { data: ReportData }) {
                 <Text
                   style={[
                     styles.resultChip,
-                    { color: gate.passed ? "#3F7A34" : "#B4342A" },
+                    { color: gate.passed ? TONE_GOOD : TONE_LOST },
                   ]}
                 >
                   {gate.passed ? "PASS" : "FAIL"}
@@ -207,7 +223,7 @@ function ReportDocument({ data }: { data: ReportData }) {
                   <Text
                     style={[
                       styles.resultChip,
-                      { color: check.passed ? "#3F7A34" : "#B4342A" },
+                      { color: check.passed ? TONE_GOOD : TONE_LOST },
                     ]}
                   >
                     {check.passed ? "PASS" : "FAIL"}
@@ -239,7 +255,7 @@ function ReportDocument({ data }: { data: ReportData }) {
                 <Text
                   style={[
                     styles.resultChip,
-                    { color: RESULT_COLOURS[finding.result] ?? "#1C1B18" },
+                    { color: RESULT_COLOURS[finding.result] ?? "#1A1B1D" },
                   ]}
                 >
                   {RESULT_LABELS[finding.result] ?? finding.result}
@@ -274,8 +290,8 @@ function ReportDocument({ data }: { data: ReportData }) {
               : ""}
           </Text>
           <Text style={[styles.meta, { marginTop: 8 }]}>
-            Generated by the alkatera LCA Verifier — verify the claim, not just
-            the calculation. alkatera.com
+            Generated by the alkatera verifier · verify the claim, not just the
+            calculation · alkatera.com
           </Text>
         </View>
       </Page>

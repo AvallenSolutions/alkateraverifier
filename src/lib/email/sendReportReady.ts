@@ -26,7 +26,7 @@ export async function sendReportReady(params: {
 
   await resend.emails.send({
     from:
-      process.env.EMAIL_FROM ?? "alkatera LCA Verifier <onboarding@resend.dev>",
+      process.env.EMAIL_FROM ?? "alkatera verifier <onboarding@resend.dev>",
     to: params.to,
     subject: `Your verification report is ready: ${product}`,
     html: [

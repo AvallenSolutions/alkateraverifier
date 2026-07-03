@@ -35,7 +35,7 @@ export function FindingItem({ finding }: { finding: FindingView }) {
           <FindingState result={finding.result} />
         </span>
       </summary>
-      <div className="border-t border-border px-4 py-3">
+      <div className="fact-reveal border-t border-border px-4 py-3">
         <p className="font-mono text-label uppercase text-on-surface-subtle">
           Reasoning
         </p>
