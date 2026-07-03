@@ -21,8 +21,8 @@ const config: Config = {
         "surface-sunken": "#E4E1D7",
         ink: "#1A1B1D",
         "on-ink": "#F2F1EA",
-        "on-surface-muted": "#6F6F68", // dim
-        "on-surface-subtle": "#8A897F", // meta margins
+        "on-surface-muted": "#565650", // dim, AA on paper
+        "on-surface-subtle": "#605F58", // meta margins, AA on paper
         border: "#D9D6CB", // hairline
         "border-strong": "#C9C5B8",
 
@@ -68,7 +68,7 @@ const config: Config = {
         "tier-not-certified": "#A81E2E",
         "tier-bronze": "#8A5A22",
         "tier-silver": "#59636E",
-        "tier-gold": "#A97C14",
+        "tier-gold": "#856009",
         "tier-platinum": "#3E5C76",
       },
       fontFamily: {

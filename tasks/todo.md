@@ -27,22 +27,22 @@ verifications (Anthropic/Stripe/Sentry/Vercel/PostHog/Resend) — those can land
 
 ## R0 — Design source of truth
 
-- [ ] Rewrite `docs/design.md` to the studio language adapted for the Verifier
+- [x] Rewrite `docs/design.md` to the studio language adapted for the Verifier
       (palette, three voices, marks, room anatomy, kit of parts, motion, voice).
 - [ ] Regenerate `docs/design.html` mirror to match.
 
 ## R1 — Token + type foundation
 
-- [ ] `tailwind.config.ts`: replace palette (paper #ECEAE3, cream #F2F1EA, hairline #D9D6CB,
+- [x] `tailwind.config.ts`: replace palette (paper #ECEAE3, cream #F2F1EA, hairline #D9D6CB,
       dim #6F6F68, ink #1A1B1D; forest/cobalt/ochre/ochre-ink/brick; working tones;
       tier-tones; reserved accent). Remove lime (#C2F000) entirely.
-- [ ] Re-cut type scale: statement (Space Grotesk Bold, 40–68px, lh 0.95, tracking -0.035em),
+- [x] Re-cut type scale: statement (Space Grotesk Bold, 40–68px, lh 0.95, tracking -0.035em),
       big-number (tabular 27–32px), card-title (SemiBold 13.5–15px), body (Inter 13–14/1.5),
       eyebrow (JetBrains Mono Bold 9.5–10.5px caps +0.22em), meta (JetBrains Mono 10–11px).
       Tabular numerals feature. Radius 6 + full. Studio ease token.
-- [ ] `layout.tsx`: swap fonts to Space Grotesk + Inter + JetBrains Mono (drop Playfair +
+- [x] `layout.tsx`: swap fonts to Space Grotesk + Inter + JetBrains Mono (drop Playfair +
       IBM Plex Mono). Wordmark "alka**tera** verifier".
-- [ ] `globals.css`: font vars, focus-visible in the new accent, studio ease,
+- [x] `globals.css`: font vars, focus-visible in the new accent, studio ease,
       prefers-reduced-motion guard.
 
 ## R2 — Kit of parts (primitives)

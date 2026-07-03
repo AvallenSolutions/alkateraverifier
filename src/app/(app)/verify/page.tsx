@@ -1,7 +1,7 @@
 import { getActiveStandards } from "@/lib/standards/get";
 import { VerifyFlow } from "@/components/features/VerifyFlow";
 
-export const metadata = { title: "Verify — alkatera LCA Verifier" };
+export const metadata = { title: "Verify · alkatera verifier" };
 
 export default async function VerifyPage() {
   const groups = await getActiveStandards();

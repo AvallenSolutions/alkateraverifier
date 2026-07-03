@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Toast, useToast } from "@/components/ui/Toast";
+import { buttonClasses } from "@/components/ui/button";
 
 /** Re-enqueues a failed verification (the worker re-claims failed rows). */
 export function RetryButton({ verificationId }: { verificationId: string }) {
@@ -43,7 +44,7 @@ export function RetryButton({ verificationId }: { verificationId: string }) {
         type="button"
         onClick={retry}
         disabled={busy}
-        className="rounded-full bg-accent px-5 py-2.5 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-40"
+        className={buttonClasses("accent")}
       >
         {busy ? "Retrying…" : "Retry verification"}
       </button>

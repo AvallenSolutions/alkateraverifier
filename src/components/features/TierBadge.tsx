@@ -1,21 +1,23 @@
 import type { Tier } from "@/types/verification";
 
 /**
- * The five certification bands as stamp-like metallic pills
- * (design.md § Components, badge-tier-*).
+ * The certification verdict, typographic (docs/design.md § tier): a big
+ * Space Grotesk word in its tier tone. No pill, no saturated block — the
+ * word and its colour carry the meaning. Kept named TierBadge so existing
+ * call sites keep working; it is no longer a badge.
  */
 const TIER_STYLES: Record<Tier, { label: string; className: string }> = {
-  not_certified: {
-    label: "Not Certified",
-    className: "bg-tier-not-certified text-on-metal-light",
-  },
-  bronze: { label: "Bronze", className: "bg-tier-bronze text-on-metal-light" },
-  silver: { label: "Silver", className: "bg-tier-silver text-on-metal-dark" },
-  gold: { label: "Gold", className: "bg-tier-gold text-on-metal-dark" },
-  platinum: {
-    label: "Platinum",
-    className: "bg-tier-platinum text-on-metal-light",
-  },
+  not_certified: { label: "Not Certified", className: "text-tier-not-certified" },
+  bronze: { label: "Bronze", className: "text-tier-bronze" },
+  silver: { label: "Silver", className: "text-tier-silver" },
+  gold: { label: "Gold", className: "text-tier-gold" },
+  platinum: { label: "Platinum", className: "text-tier-platinum" },
+};
+
+const SIZE_CLASSES: Record<string, string> = {
+  sm: "text-h3",
+  md: "text-h1",
+  lg: "text-statement",
 };
 
 export function TierBadge({
@@ -23,15 +25,11 @@ export function TierBadge({
   size = "md",
 }: {
   tier: Tier;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
 }) {
   const style = TIER_STYLES[tier];
   return (
-    <span
-      className={`inline-flex items-center rounded-full font-mono uppercase ${style.className} ${
-        size === "lg" ? "px-6 py-2.5 text-body-sm tracking-[0.08em]" : "px-4 py-1.5 text-label"
-      }`}
-    >
+    <span className={`font-display ${SIZE_CLASSES[size]} ${style.className}`}>
       {style.label}
     </span>
   );

@@ -8,8 +8,8 @@ colors:
   surface-sunken: "#E4E1D7"    # a deeper cream for recessed/muted panels
   ink: "#1A1B1D"               # text, actions, the shell bands
   on-ink: "#F2F1EA"            # cream text on ink / on saturated blocks
-  on-surface-muted: "#6F6F68"  # dim — quiet text on paper
-  on-surface-subtle: "#8A897F" # meta — times, ages, hexes at the margins
+  on-surface-muted: "#565650"  # dim — quiet text on paper (AA)
+  on-surface-subtle: "#605F58" # meta — times, ages, hexes at the margins (AA)
   border: "#D9D6CB"            # hairline — rules and panel borders
   border-strong: "#C9C5B8"     # a firmer hairline for emphasis
   # The reserved Verifier accent — deliberately NOT one of the four brand rooms.
@@ -37,7 +37,7 @@ colors:
   tier-not-certified: "#A81E2E"
   tier-bronze: "#8A5A22"
   tier-silver: "#59636E"
-  tier-gold: "#A97C14"
+  tier-gold: "#856009"
   tier-platinum: "#3E5C76"
 typography:
   statement:
