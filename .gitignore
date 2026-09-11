@@ -30,3 +30,6 @@ coverage/
 
 # Vercel
 .vercel
+
+# Supabase CLI local state (project link, versions); machine-specific
+supabase/.temp/

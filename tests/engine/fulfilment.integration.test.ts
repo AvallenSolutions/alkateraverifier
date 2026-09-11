@@ -10,7 +10,11 @@ import { handleCheckoutCompleted } from "@/lib/stripe/webhook-handlers";
  * Runs against the real Supabase project; skips without env.
  */
 
+// Opt-in only. The Supabase project is now shared with the alkatera platform,
+// so these tests must never run just because keys are present in .env.local.
+// Run with: RUN_INTEGRATION=1 npm test
 const hasEnv =
+  process.env.RUN_INTEGRATION === "1" &&
   !!process.env.NEXT_PUBLIC_SUPABASE_URL &&
   !!process.env.SUPABASE_SERVICE_ROLE_KEY;
 
