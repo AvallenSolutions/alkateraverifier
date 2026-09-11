@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 
 /**
  * Free → paid upgrade (TASK-036, FR-007). The free verdict stays fully
@@ -11,6 +12,7 @@ export function UpgradeCTA({ verificationId }: { verificationId: string }) {
   const [error, setError] = useState<string | null>(null);
 
   const startCheckout = async () => {
+    track("upgrade_clicked", { verification_id: verificationId });
     setBusy(true);
     setError(null);
     try {

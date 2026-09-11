@@ -54,10 +54,10 @@ const TIER_LABELS: Record<Tier, string> = {
 
 const TIER_COLOURS: Record<Tier, string> = {
   not_certified: "#A0554A",
-  bronze: "#B0763E",
+  bronze: "#9A6532",
   silver: "#9CA3AC",
   gold: "#C6A02A",
-  platinum: "#5C7C8A",
+  platinum: "#54707D",
 };
 
 const RESULT_LABELS: Record<string, string> = {

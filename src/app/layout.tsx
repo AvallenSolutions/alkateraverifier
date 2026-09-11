@@ -19,9 +19,22 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "alkatera LCA Verifier",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
+  ),
+  title: {
+    default: "alkatera LCA Verifier — independent LCA verification",
+    template: "%s",
+  },
   description:
     "Independent LCA verification that shows its working. Upload any LCA, choose your standards, and get a transparent, clause-by-clause verdict in minutes.",
+  openGraph: {
+    type: "website",
+    siteName: "alkatera LCA Verifier",
+    title: "Independent LCA verification that shows its working",
+    description:
+      "Upload any LCA, choose your standards, and get a clause-by-clause verdict in minutes. We will even fail our own reports.",
+  },
 };
 
 export default function RootLayout({

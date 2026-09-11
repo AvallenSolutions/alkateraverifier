@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadDropzone } from "./UploadDropzone";
 import { StandardsPicker } from "./StandardsPicker";
+import { track } from "@/lib/analytics";
 import type { Standard, StandardCategory } from "@/types/verification";
 
 /** Stepper state for the Verify screen (TASK-020): upload → standards → submit. */
@@ -17,6 +18,11 @@ export function VerifyFlow({
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleFileChange = (nextFile: File | null) => {
+    if (nextFile && !file) track("upload_started");
+    setFile(nextFile);
+  };
 
   const toggleCode = (code: string) => {
     setSelectedCodes((current) =>
@@ -54,6 +60,8 @@ export function VerifyFlow({
         setSubmitting(false);
         return;
       }
+      track("upload_completed", { verification_id: body.id });
+      track("standards_selected", { count: selectedCodes.length });
       router.push(`/verify/${body.id}`);
     } catch {
       setError("We could not reach the server. Check your connection and try again.");
@@ -69,7 +77,7 @@ export function VerifyFlow({
         </p>
         <h2 className="mt-2 font-display text-h2 text-ink">Your LCA report</h2>
         <div className="mt-4">
-          <UploadDropzone file={file} onFileChange={setFile} />
+          <UploadDropzone file={file} onFileChange={handleFileChange} />
         </div>
       </section>
 

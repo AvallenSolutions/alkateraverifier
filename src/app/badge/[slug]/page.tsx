@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TierBadge } from "@/components/features/TierBadge";
+import { TrackedLink } from "@/components/marketing/TrackedLink";
 import { getPublicBadgeData } from "@/lib/report/badge-data";
 
 export const metadata = { title: "Verified LCA — alkatera LCA Verifier" };
@@ -87,12 +88,13 @@ export default async function BadgePage({
       <section className="mt-10 border-t border-border pt-6 text-center">
         <p className="text-body-sm text-on-surface-muted">
           Verified by the{" "}
-          <a
+          <TrackedLink
             href="https://alkatera.com"
+            event="alkatera_referral_click"
             className="text-accent-strong underline"
           >
             alka<span className="font-semibold">tera</span>
-          </a>{" "}
+          </TrackedLink>{" "}
           LCA Verifier — independent verification that shows its working. This
           check covers the clauses listed above; public comparative assertions
           still require an independent ISO 14044 §6 critical review.

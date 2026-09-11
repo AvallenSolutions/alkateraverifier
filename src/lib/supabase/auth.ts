@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { checkRateLimit } from "@/lib/rateLimit";
 
 /** Only allow internal redirect targets, defaulting to the dashboard. */
 function safeNext(raw: FormDataEntryValue | null): string {
@@ -22,6 +23,15 @@ export async function signIn(formData: FormData) {
 
   if (!email || !password) {
     backWithError("/sign-in", "Enter your email and password.", next);
+  }
+
+  // Slow credential guessing (TASK-048).
+  if (!checkRateLimit(`auth:${email.toLowerCase()}`, 10, 15 * 60 * 1000).allowed) {
+    backWithError(
+      "/sign-in",
+      "Too many attempts. Wait a few minutes and try again.",
+      next,
+    );
   }
 
   const supabase = await createClient();
@@ -47,6 +57,14 @@ export async function signUp(formData: FormData) {
     backWithError("/sign-up", "Enter your email and choose a password.", next);
   }
 
+  if (!checkRateLimit(`auth:${email.toLowerCase()}`, 10, 15 * 60 * 1000).allowed) {
+    backWithError(
+      "/sign-up",
+      "Too many attempts. Wait a few minutes and try again.",
+      next,
+    );
+  }
+
   const supabase = await createClient();
   const { error } = await supabase.auth.signUp({ email, password });
 
@@ -58,7 +76,8 @@ export async function signUp(formData: FormData) {
     backWithError("/sign-up", message, next);
   }
 
-  redirect(next);
+  // signup=1 lets the client fire the signup funnel event (TASK-047).
+  redirect(`${next}${next.includes("?") ? "&" : "?"}signup=1`);
 }
 
 export async function signOut() {
