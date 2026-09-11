@@ -47,13 +47,19 @@ Database move (D3), done in the repo on 11 September 2026:
       insert as `authenticated` refused, an email update refused. Staging left untouched.
 - [x] `.env.local` points at alkatera-staging (service role key still blank).
 - [x] Code comments and docs no longer name Alkatera2.
-- [ ] **Tim:** paste the baseline SQL into the alkatera-staging SQL editor and send back the
-      verification output.
+- [x] Baseline run on alkatera-staging (11 Sep, by Claude at Tim's request, via direct SQL so
+      the platform's migration tracker is untouched). Check query exactly as expected:
+      8 tables, 9 policies, 9 standards, 11 clauses, RLS on 8, 0 user write grants, profile
+      edits limited to display and company name, bucket present, 0 tracker rows added.
+- [x] Privacy test as real users (rolled back): user A sees their own verification and
+      badge; user B sees neither; A cannot edit B's profile; anon cannot read verifications
+      but can read the 9 standards. Security advisor: no findings for `lcaverifier`.
 - [ ] **Tim:** alkatera-staging, Project Settings, API, Exposed schemas: add `lcaverifier`.
 - [ ] **Tim:** paste the alkatera-staging service role key into `.env.local`.
 - [ ] Re-probe the REST API; sign up, upload, and read back through RLS end to end.
-- [ ] **Tim (optional, recommended):** drop the empty `lcaverifier` schema in Alkatera2 so the
-      cutover's data copy cannot trip over it (SQL in chat, 11 September 2026).
+- [x] Dropped the empty `lcaverifier` schema in Alkatera2 (11 Sep, at Tim's request, after a
+      pre-check: correct project, 0 users, 0 verifications, 0 files, nothing outside the
+      schema depending on it). Its empty `lca-uploads` bucket stays until Alkatera2 closes.
 
 One login (D2):
 - [ ] Sign-up must cope with email confirmation (staging has `mailer_autoconfirm` off; the

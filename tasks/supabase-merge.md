@@ -22,11 +22,11 @@ least-privilege grants and the Phase 1 security fixes are built in.
 Checklist:
 - [x] Baseline written and dry-run on staging (forced rollback; staging left untouched).
 - [x] `.env.local` repointed; code and docs updated.
-- [ ] Tim runs the baseline in staging and returns the verification output.
+- [x] Baseline run in staging (11 Sep). Check query and a rolled-back privacy test passed.
 - [ ] Tim adds `lcaverifier` to staging's Exposed schemas.
 - [ ] Tim pastes the staging service role key into `.env.local`.
 - [ ] End-to-end check through the API.
-- [ ] Optional: drop the empty `lcaverifier` schema in Alkatera2 before the platform cutover.
+- [x] Dropped the empty `lcaverifier` schema in Alkatera2 (11 Sep).
 
 Watch-outs:
 - The platform cutover purges staging's demo users. `lcaverifier.profiles` cascades from
