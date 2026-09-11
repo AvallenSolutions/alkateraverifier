@@ -3,20 +3,16 @@
 Review with all findings and file references: `tasks/review-2026-09-11.md`.
 Previous (completed) redesign plan: `tasks/archive/redesign-studio-language-2026-07.md`.
 
-## Decisions needed from Tim before Phase 1
+## Decisions (Tim, 11 September 2026)
 
-- [ ] **D1. Where does it live?**
-      (a) `verifier.alkatera.com` subdomain: no basePath, no rewrite in the alkatera repo,
-      own cookies and robots, independence stays visible. Recommended.
-      (b) `alkatera.com/lcaverifier`: keep basePath, add a multi-zone rewrite plus a
-      middleware exclusion in the alkatera repo, fix six basePath breakages, share the
-      alkatera.com robots.txt.
-- [ ] **D2. Shared sign-in or separate?**
-      (a) Separate session: own cookie name and path, `signOut({ scope: "local" })`,
-      stop the platform's `handle_new_user` trigger writing verifier users into
-      `public.profiles`. Recommended (automatic with D1a).
-      (b) One alkatera login for both: document it, remove "create an account" copy,
-      coordinate cookie options with the platform.
+- [x] **D1. It lives at `verifier.alkatera.com`.** basePath removed. The six basePath
+      breakages in the review no longer apply.
+- [x] **D2. One login for both products.** Same Supabase auth as the platform. A verifier
+      sign-up is an alka**tera** account (the platform's `handle_new_user` makes its
+      `public.profiles` row; that is now intended).
+- [x] **D3. The verifier moves from Alkatera2 to alkatera-staging** (`vwhdyqvlgjqmlzmsvaes`),
+      which becomes alka**tera** production at the v2 cutover (per the platform's
+      `tasks/alkatera-v2-launch-plan.md`). See `tasks/supabase-merge.md`.
 
 Design direction assumed (per Tim's ask): adopt the CURRENT alkatera system (Wada Sanzo
 palette, Bricolage Grotesque, studio kit) exactly. Keep the standalone ink-led stance
@@ -30,9 +26,8 @@ pigment at Phase 4 start with two swatches.
       Work branch: `fix/review-2026-09-11`.
 - [x] Verify `main` on its own (uncommitted work stashed): tsc, lint, 32 tests, production
       build all green.
-- [ ] Commit the uncommitted schema and basePath work only after Phase 1 fixes.
-      (Still uncommitted on the work branch: supabase client schema option,
-      `ensureProfile`, basePath, `.env.example`, `.claude/launch.json`.)
+- [x] Commit the schema work. Done with the database move (D3): the new baseline closes the
+      holes that made it unsafe. basePath dropped (D1).
 - [x] Replace the create-next-app README.
 - [x] Untrack `supabase/.temp/` (it pointed at the deleted project) and ignore it.
 - [x] Pulled forward from Phase 1: the two Supabase integration tests are now opt-in
@@ -41,15 +36,43 @@ pigment at Phase 4 start with two swatches.
 
 ## Phase 1. Security and launch blockers (M)
 
-- [ ] Expose `lcaverifier` in Alkatera2, Project Settings, API, Exposed schemas (Tim).
-      Re-probe with the REST call in the review.
-- [ ] Apply the RLS and grant hardening SQL to Alkatera2: drop `verifications_insert_own`
-      and `verifications_delete_own`; revoke INSERT/UPDATE/DELETE from `anon` and
-      `authenticated` on every table; restrict `profiles_update_own` to display and company
-      name; unique index on `payments.stripe_session_id`; CHECK constraints on status, tier,
-      result, severity, confidence. Post the SQL in chat.
-- [ ] Rewrite `supabase/migrations` as one schema-qualified `lcaverifier` migration matching
-      production; delete `0004_profile_trigger.sql`; register in Alkatera2 migration history.
+Database move (D3), done in the repo on 11 September 2026:
+- [x] One schema-qualified baseline: `supabase/migrations/20260911160000_lcaverifier_baseline.sql`.
+      Same tables and seed as Alkatera2 plus the hardening: least-privilege grants, no user
+      INSERT/DELETE on verifications, owner-only badges, unique Stripe session id, CHECK
+      constraints on status/tier/result/severity/category/payment status, TEXT product name.
+      Old migrations moved to `supabase/migrations_archive/` with a do-not-run note.
+- [x] Dry run on alkatera-staging inside a forced rollback: 8 tables, 9 policies,
+      9 standards, 11 clauses, RLS on 8 tables, 0 user write grants, a fake paid Platinum
+      insert as `authenticated` refused, an email update refused. Staging left untouched.
+- [x] `.env.local` points at alkatera-staging (service role key still blank).
+- [x] Code comments and docs no longer name Alkatera2.
+- [ ] **Tim:** paste the baseline SQL into the alkatera-staging SQL editor and send back the
+      verification output.
+- [ ] **Tim:** alkatera-staging, Project Settings, API, Exposed schemas: add `lcaverifier`.
+- [ ] **Tim:** paste the alkatera-staging service role key into `.env.local`.
+- [ ] Re-probe the REST API; sign up, upload, and read back through RLS end to end.
+- [ ] **Tim (optional, recommended):** drop the empty `lcaverifier` schema in Alkatera2 so the
+      cutover's data copy cannot trip over it (SQL in chat, 11 September 2026).
+
+One login (D2):
+- [ ] Sign-up must cope with email confirmation (staging has `mailer_autoconfirm` off; the
+      old project had it on). Today a new user is bounced to sign-in with no message. Add
+      a "check your email" state, an `/auth/confirm` route (`verifyOtp` with `token_hash`),
+      and `emailRedirectTo`. Existing emails return no error when confirmation is on, so
+      the "already exists" branch needs rethinking.
+- [ ] **Tim:** add `https://verifier.alkatera.com/**` and `http://localhost:3000/**` to
+      alkatera-staging, Authentication, URL Configuration, Redirect URLs.
+- [ ] Sign in once for both sites: set `cookieOptions.domain = ".alkatera.com"` in
+      production in the verifier's three Supabase clients AND in the platform's
+      `lib/supabase/browser-client.ts` and `server-client.ts` (alkatera repo, redesign
+      branch). Until then the same account works on both, but people sign in on each.
+      Check cookie format parity (@supabase/ssr 0.12 here, 0.8 in the platform).
+- [ ] Decide whether verifier sign-up stays, or hands off to the platform's `/signup`.
+- [ ] Do not open the verifier to real users before the platform cutover: the cutover
+      purges staging's demo users, and `lcaverifier.profiles` cascades from `auth.users`.
+- [ ] After the platform rotates staging's anon and service keys (launch plan, Phase 3),
+      update the verifier's env vars in `.env.local` and Vercel.
 - [ ] Remove the self-fetch worker: run `after(runVerification)` inside `POST /api/verify`
       with `maxDuration = 300`; add authenticated `POST /api/verify/[id]/retry`; delete or
       secret-guard `/api/verify/process`.
@@ -57,9 +80,9 @@ pigment at Phase 4 start with two swatches.
 - [ ] Sign-in limiter keyed on ip+email or removed; server-side password length.
 - [ ] Stripe webhook: treat 23505 as duplicate, 200 on permanent errors, handle
       `charge.refunded` (unpay, delete badge), check `livemode` and `metadata.userId`.
-- [ ] Implement D1 and D2 (URL, cookies, sign-out scope, trigger side effect).
-- [ ] Fix the six basePath breakages if D1b (`apiUrl()` helper, `Link` for badge and report,
-      validate `NEXT_PUBLIC_APP_URL` pathname, ESLint rule against `fetch("/`).
+- [x] D1: basePath removed (`next.config.ts`, `.env.example`, Resend script, README).
+- [ ] Badge and report links: use `Link` for the badge; keep plain anchors only for file
+      downloads. Validate `NEXT_PUBLIC_APP_URL` is `https://verifier.alkatera.com` in production.
 - [ ] Fix integration tests: use `createAdminClient()`, dedicated test auth user
       (the `RUN_INTEGRATION=1` gate is already in, from Phase 0).
 - [ ] `env.ts`: Anthropic, Stripe, Resend, `EMAIL_FROM` required in production.
@@ -137,8 +160,9 @@ pigment at Phase 4 start with two swatches.
       (AuthShell idiom), marketing (SiteNav/SiteFooter idiom, one PosterBlock), badge page
       as a certificate with band and mark.
 - [ ] R5: copy. Full stops on statements, number as subject, "3 July 2026" dates in
-      Europe/London, no em dashes anywhere (title, copy, placeholders), British English,
-      Not Certified in sentence case.
+      Europe/London, no em dashes anywhere (title, copy, placeholders, and the ISO
+      descriptions in the `standards` seed data), British English, Not Certified in
+      sentence case.
 - [ ] R6: a11y and polish. Dropzone without nested controls; permanent live region; no
       `role="alert"` on static content; `scope="col"`; skip link; 3:1 input borders;
       responsive statement clamp; favicon, icon, OG image, theme colour; clear `public/`.
@@ -150,8 +174,10 @@ pigment at Phase 4 start with two swatches.
 - [ ] Browser pass on desktop and 375px for every surface; axe pass; contrast measured.
 - [ ] Live end-to-end with real keys: sign up, upload the good fixture and the three flawed
       fixtures, check tiers, pay in Stripe test mode, badge, report email.
-- [ ] Vercel project for the verifier (Pro plan for 300s), env vars set, Stripe webhook on
-      the verifier's own domain, Resend domain verified, Sentry test error, PostHog funnel.
+- [ ] Vercel project for the verifier (Pro plan for 300s), domain `verifier.alkatera.com`,
+      env vars set, Stripe webhook on that domain, Resend domain verified, Sentry test error,
+      PostHog funnel. Run the Turbopack build there (on 11 Sep this Mac's network reset the
+      parallel Google Fonts downloads; the webpack build passed).
 - [ ] Health endpoint wired to a monitor; Claude spend alert set.
 - [ ] Screenshots of each surface for sign-off.
 

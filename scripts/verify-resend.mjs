@@ -26,7 +26,7 @@ if (!to) {
 }
 
 const from = process.env.EMAIL_FROM ?? "alkatera verifier <onboarding@resend.dev>";
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000/lcaverifier";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 // Sample values mirroring a real completed+paid verification.
 const verificationId = "test-" + "0000-0000-0000";

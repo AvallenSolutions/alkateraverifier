@@ -13,6 +13,9 @@ export async function createClient() {
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
+      // Verifier tables live in a dedicated schema inside the shared
+      // alkatera Supabase project, isolated from the platform's public schema.
+      db: { schema: "lcaverifier" },
       cookies: {
         getAll() {
           return cookieStore.getAll();

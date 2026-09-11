@@ -1,4 +1,45 @@
-# Merge LCA Verifier Supabase project into Alkatera2
+# Verifier database: where it lives
+
+## Current (11 September 2026): alkatera-staging
+
+The verifier moved again, from Alkatera2 (`dfcezkyaejrxmbwunhry`) to **alkatera-staging**
+(`vwhdyqvlgjqmlzmsvaes`, London). Reason: the platform's v2 launch plan makes staging the
+production database and closes Alkatera2. Tim chose one login for both products, so the
+verifier must share the platform's auth project.
+
+What moved: the `lcaverifier` schema (8 tables), 9 standards, 11 clauses. Alkatera2 held no
+users, verifications, payments, badges or files for the verifier, so no user data moved.
+The `lca-uploads` bucket already existed in staging (the platform copied every Alkatera2
+bucket on 1 August 2026) and is reused. It is empty and no platform code uses it.
+
+How: `supabase/migrations/20260911160000_lcaverifier_baseline.sql`, pasted into the
+staging SQL editor by Tim. It is not recorded in the migration tracker (that tracker
+belongs to the platform repo), so never `supabase db push` from this repo.
+
+Differences from the Alkatera2 schema: see the header of the baseline file. In short,
+least-privilege grants and the Phase 1 security fixes are built in.
+
+Checklist:
+- [x] Baseline written and dry-run on staging (forced rollback; staging left untouched).
+- [x] `.env.local` repointed; code and docs updated.
+- [ ] Tim runs the baseline in staging and returns the verification output.
+- [ ] Tim adds `lcaverifier` to staging's Exposed schemas.
+- [ ] Tim pastes the staging service role key into `.env.local`.
+- [ ] End-to-end check through the API.
+- [ ] Optional: drop the empty `lcaverifier` schema in Alkatera2 before the platform cutover.
+
+Watch-outs:
+- The platform cutover purges staging's demo users. `lcaverifier.profiles` cascades from
+  `auth.users`, so no real verifier users before the cutover.
+- The platform will rotate staging's keys before customer data lands. Update the verifier's
+  env vars when it does.
+- Staging requires email confirmation. The verifier's sign-up does not handle it yet
+  (Phase 1 in `tasks/todo.md`).
+
+---
+
+## History (July 2026): the first move, into Alkatera2
+
 
 **Goal:** Fold the LCA Verifier Supabase project (`goriowvxkvmizwtenpju`) into the
 **Alkatera2** project so the verifier's project slot can be freed, with **zero data

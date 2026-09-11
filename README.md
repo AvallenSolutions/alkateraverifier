@@ -13,8 +13,8 @@ It is platform-agnostic by design. It must be willing to fail alka**tera**'s own
 - A full review and the current plan live in `tasks/`:
   - `tasks/review-2026-09-11.md`: every known bug and flaw, with file references.
   - `tasks/todo.md`: the phased plan (security, engine, tests, re-skin, launch).
-- The database now lives in the shared Alkatera2 Supabase project, in its own
-  `lcaverifier` schema. See `tasks/supabase-merge.md`.
+- The database lives in the shared alka**tera** Supabase project (alkatera-staging), in its
+  own `lcaverifier` schema. One login works for both products. See `tasks/supabase-merge.md`.
 
 ## Stack
 
@@ -40,8 +40,7 @@ npm run dev
 Fill in `.env.local` first. The app validates its environment on start (`src/lib/env.ts`).
 Set `SKIP_ENV_VALIDATION=1` to build without secrets.
 
-The local URL depends on the base path in `next.config.ts`. With no base path it is
-`http://localhost:3000`.
+It runs at `http://localhost:3000`. In production it lives at `https://verifier.alkatera.com`.
 
 ## Scripts
 
@@ -70,13 +69,15 @@ All names and notes are in `.env.example`.
 
 ## Database
 
-- Project: Alkatera2 (`dfcezkyaejrxmbwunhry`), schema `lcaverifier`. Auth users and
-  storage are shared with the alka**tera** platform.
+- Project: alkatera-staging (`vwhdyqvlgjqmlzmsvaes`), schema `lcaverifier`. It becomes
+  alka**tera** production at the v2 cutover. Auth users and storage are shared with the
+  platform, so one login works for both.
 - The schema must be listed under Project Settings, API, Exposed schemas.
-- **Do not run `supabase db push`.** The files in `supabase/migrations/` still target
-  the old standalone project and the `public` schema. One of them would overwrite the
-  platform's sign-up trigger. Phase 1 of `tasks/todo.md` replaces them.
-- Every schema change is posted as SQL and run in the Supabase SQL editor.
+- The schema is `supabase/migrations/20260911160000_lcaverifier_baseline.sql`.
+- **Do not run `supabase db push`.** The project's migration tracker belongs to the
+  platform repo. Every verifier schema change is posted as SQL and pasted into the
+  Supabase SQL editor.
+- `supabase/migrations_archive/` holds the first project's migrations. Never run them.
 
 ## How a verification works
 
@@ -113,7 +114,7 @@ src/lib/extraction/ PDF text and Claude extraction
 src/lib/standards/  clause loading and plain-English descriptors
 src/lib/report/     PDF report and badge data
 src/lib/supabase/   server, browser and admin clients, auth actions
-supabase/           migrations (out of date, see above)
+supabase/           the lcaverifier schema, plus archived migrations
 tests/              engine tests and fixtures
 docs/               vision, PRD, roadmap, design system
 tasks/              review and plan

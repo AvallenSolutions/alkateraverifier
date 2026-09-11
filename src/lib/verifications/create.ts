@@ -1,4 +1,5 @@
 import { createAdminClient } from "@/lib/supabase/admin";
+import { ensureProfile } from "@/lib/supabase/profile";
 import { env } from "@/lib/env";
 import type { Verification } from "@/types/verification";
 
@@ -28,6 +29,10 @@ export async function createVerification(params: {
   const admin = createAdminClient();
   const id = crypto.randomUUID();
   const filePath = `${params.userId}/${id}.pdf`;
+
+  // verifications.user_id foreign-keys to profiles; ensure the row exists
+  // (replaces the old signup trigger, now that auth is shared with the platform).
+  await ensureProfile(params.userId);
 
   const { error: uploadError } = await admin.storage
     .from(BUCKET)
