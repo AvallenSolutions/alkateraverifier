@@ -60,10 +60,21 @@ const runtimeEnv = {
   RESEND_API_KEY: process.env.RESEND_API_KEY,
 };
 
-function parseEnv(): ServerEnv {
+let cached: ServerEnv | null = null;
+
+/**
+ * Validate and cache the environment. Called explicitly at server startup
+ * (src/instrumentation.ts) and lazily on first `env` access elsewhere, so
+ * importing this module (e.g. in tests) does not itself require a
+ * configured environment.
+ */
+export function parseEnv(): ServerEnv {
+  if (cached) return cached;
+
   // Escape hatch for CI builds that run without secrets.
   if (process.env.SKIP_ENV_VALIDATION) {
-    return runtimeEnv as ServerEnv;
+    cached = runtimeEnv as ServerEnv;
+    return cached;
   }
 
   const isServer = typeof window === "undefined";
@@ -81,10 +92,15 @@ function parseEnv(): ServerEnv {
 
   // On the client only the client schema is parsed; server-only keys are
   // simply absent there, which the ServerEnv type cannot express.
-  return result.data as ServerEnv;
+  cached = result.data as ServerEnv;
+  return cached;
 }
 
-export const env = parseEnv();
+export const env: ServerEnv = new Proxy({} as ServerEnv, {
+  get(_target, prop) {
+    return parseEnv()[prop as keyof ServerEnv];
+  },
+});
 
 /**
  * Fetch an optional (later-phase) variable and fail loudly at the point of
