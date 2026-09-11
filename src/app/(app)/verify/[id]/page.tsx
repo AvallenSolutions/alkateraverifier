@@ -8,6 +8,8 @@ import { TrackOnMount } from "@/components/TrackOnMount";
 import { RetryButton } from "@/components/features/RetryButton";
 import { TierBadge } from "@/components/features/TierBadge";
 import { UpgradeCTA } from "@/components/features/UpgradeCTA";
+import { BigNumber } from "@/components/ui/BigNumber";
+import { buttonClasses } from "@/components/ui/button";
 import { VerificationProgress } from "@/components/features/VerificationProgress";
 import { LOW_CONFIDENCE_THRESHOLD } from "@/lib/extraction/extract";
 import type { GateResult } from "@/lib/engine/score";
@@ -15,7 +17,7 @@ import type { LcaExtraction } from "@/types/lca";
 import type { Tier } from "@/types/verification";
 import type { VerificationStatusSnapshot } from "@/hooks/useVerificationStatus";
 
-export const metadata = { title: "Verification — alkatera LCA Verifier" };
+export const metadata = { title: "Verification · alkatera verifier" };
 
 /**
  * Result page (TASK-029/030): the transparent verdict. Tier is never shown
@@ -45,17 +47,17 @@ export default async function VerificationPage({
 
   const heading = (
     <>
-      <p className="font-mono text-label uppercase text-on-surface-subtle">
+      <p className="font-mono text-label uppercase text-accent-strong">
         Verification
       </p>
       <h1 className="mt-2 font-display text-h1 text-ink">
         {verification.product_name ?? "Your LCA"}
       </h1>
-      <p className="mt-2 font-mono text-caption text-on-surface-subtle">
-        Submitted {new Date(verification.created_at).toLocaleString("en-GB")}
+      <p className="mt-2 font-mono text-meta text-on-surface-subtle">
+        Submitted {new Date(verification.created_at).toLocaleDateString("en-GB")}
         {verification.source_platform &&
         verification.source_platform !== "unknown"
-          ? ` · Source: ${verification.source_platform}`
+          ? ` · Source ${verification.source_platform}`
           : ""}
       </p>
     </>
@@ -189,22 +191,21 @@ export default async function VerificationPage({
         </div>
       ) : null}
 
-      <section className="mt-6 rounded-md border border-border bg-surface p-5">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <TierBadge tier={tier} size="lg" />
-          <p className="font-mono text-data text-on-surface-muted">
-            Score{" "}
-            <span className="text-h3 font-semibold text-ink">
-              {verification.score ?? "—"}
-            </span>
-            /100
+      <section className="mt-8 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p className="font-mono text-label uppercase text-on-surface-subtle">
+            Verdict
+          </p>
+          <div className="mt-2">
+            <TierBadge tier={tier} size="lg" />
+          </div>
+          <p className="mt-3 max-w-xl text-body text-on-surface-muted">
+            Conforms on {conformsCount} of {findings.length} clauses checked
+            against your selected standards. Every finding below shows its
+            working.
           </p>
         </div>
-        <p className="mt-4 text-body text-on-surface-muted">
-          Conforms on {conformsCount} of {findings.length} clauses checked
-          against your selected standards. Every finding below shows its
-          working.
-        </p>
+        <BigNumber value={verification.score ?? "—"} label="Score / 100" />
       </section>
 
       {lowConfidence ? (
@@ -277,14 +278,14 @@ export default async function VerificationPage({
             <div className="mt-4 flex flex-wrap gap-3">
               <a
                 href={`/api/verify/${verification.id}/report`}
-                className="rounded-full bg-accent px-6 py-2.5 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
+                className={buttonClasses("accent")}
               >
                 Download report (PDF)
               </a>
               {badge ? (
                 <a
                   href={`/badge/${badge.public_slug}`}
-                  className="rounded-full border border-border-strong bg-surface px-6 py-2.5 font-mono text-label uppercase text-ink transition-colors hover:bg-surface-sunken"
+                  className={buttonClasses("outline")}
                 >
                   View public badge
                 </a>

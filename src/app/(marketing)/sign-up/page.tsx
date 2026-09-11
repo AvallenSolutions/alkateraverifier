@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { signUp } from "@/lib/supabase/auth";
+import { Mark } from "@/components/ui/Mark";
+import { buttonClasses } from "@/components/ui/button";
 
-export const metadata = { title: "Create your account — alkatera LCA Verifier" };
+export const metadata = { title: "Create your account · alkatera verifier" };
 
 export default async function SignUpPage({
   searchParams,
@@ -13,12 +15,16 @@ export default async function SignUpPage({
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-16">
       <div className="w-full max-w-sm">
-        <p className="text-center font-mono text-label uppercase text-on-surface-subtle">
-          <Link href="/">
-            alka<span className="font-semibold">tera</span> LCA Verifier
-          </Link>
-        </p>
-        <h1 className="mt-3 text-center font-display text-h1 text-ink">
+        <Link href="/" className="flex items-center justify-center gap-2">
+          <Mark className="h-5 w-5 text-accent-strong" />
+          <span className="font-display text-[15px] lowercase leading-none text-ink">
+            alka<span className="font-bold">tera</span>
+          </span>
+          <span className="font-mono text-label uppercase text-on-surface-subtle">
+            verifier
+          </span>
+        </Link>
+        <h1 className="mt-4 text-center font-display text-h1 text-ink">
           Create your account
         </h1>
         <p className="mt-3 text-center text-body-sm text-on-surface-muted">
@@ -33,7 +39,7 @@ export default async function SignUpPage({
           {error ? (
             <p
               role="alert"
-              className="mb-4 rounded-sm border-l-[3px] border-error bg-surface-sunken px-3 py-2 text-body-sm text-ink"
+              className="mb-4 rounded-sm border border-border border-l-[3px] border-l-tone-lost-ink bg-surface px-3 py-2 text-body-sm text-ink"
             >
               {error}
             </p>
@@ -75,10 +81,7 @@ export default async function SignUpPage({
             At least 8 characters.
           </p>
 
-          <button
-            type="submit"
-            className="mt-5 w-full rounded-full bg-accent px-5 py-3 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
-          >
+          <button type="submit" className={buttonClasses("accent", "mt-5 w-full")}>
             Create account
           </button>
         </form>

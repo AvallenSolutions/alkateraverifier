@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadDropzone } from "./UploadDropzone";
 import { StandardsPicker } from "./StandardsPicker";
+import { buttonClasses } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 import type { Standard, StandardCategory } from "@/types/verification";
 
@@ -72,8 +73,8 @@ export function VerifyFlow({
   return (
     <div className="space-y-6">
       <section className="rounded-md border border-border bg-surface p-5">
-        <p className="font-mono text-label uppercase text-on-surface-subtle">
-          Step 1 — Upload
+        <p className="font-mono text-label uppercase text-accent-strong">
+          Step 1 · Upload
         </p>
         <h2 className="mt-2 font-display text-h2 text-ink">Your LCA report</h2>
         <div className="mt-4">
@@ -82,8 +83,8 @@ export function VerifyFlow({
       </section>
 
       <section className="rounded-md border border-border bg-surface p-5">
-        <p className="font-mono text-label uppercase text-on-surface-subtle">
-          Step 2 — Standards
+        <p className="font-mono text-label uppercase text-accent-strong">
+          Step 2 · Standards
         </p>
         <h2 className="mt-2 font-display text-h2 text-ink">
           Choose what to verify against
@@ -106,7 +107,7 @@ export function VerifyFlow({
       {error ? (
         <p
           role="alert"
-          className="rounded-sm border-l-[3px] border-error bg-surface-sunken px-3 py-2 text-body-sm text-ink"
+          className="rounded-sm border border-border border-l-[3px] border-l-tone-lost-ink bg-surface px-3 py-2 text-body-sm text-ink"
         >
           {error}
         </p>
@@ -116,7 +117,7 @@ export function VerifyFlow({
         type="button"
         onClick={handleSubmit}
         disabled={!canSubmit}
-        className="w-full rounded-full bg-accent px-5 py-3 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:px-10"
+        className={buttonClasses("accent", "w-full sm:w-auto sm:px-10")}
       >
         {submitting ? "Uploading…" : "Verify this LCA"}
       </button>

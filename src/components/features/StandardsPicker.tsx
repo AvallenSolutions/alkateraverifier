@@ -45,7 +45,7 @@ export function StandardsPicker({
                       type="checkbox"
                       checked={checked}
                       onChange={() => onToggle(standard.code)}
-                      className="mt-1 h-4 w-4 accent-[#52700A]"
+                      className="mt-1 h-4 w-4 accent-accent"
                     />
                     <span>
                       <span className="block text-body-sm font-medium text-ink">

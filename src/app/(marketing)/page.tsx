@@ -3,9 +3,10 @@ import { Hero } from "@/components/marketing/Hero";
 import { HowItWorks } from "@/components/marketing/HowItWorks";
 import { Pricing } from "@/components/marketing/Pricing";
 import { TrackedLink } from "@/components/marketing/TrackedLink";
+import { Mark } from "@/components/ui/Mark";
 
 export const metadata = {
-  title: "alkatera LCA Verifier — independent LCA verification",
+  title: "alkatera verifier · independent LCA verification",
   description:
     "Upload any LCA, choose your standards, and get an independent, clause-by-clause verdict in minutes. Fiercely transparent: we will even fail our own reports.",
 };
@@ -14,21 +15,27 @@ export const metadata = {
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-border bg-surface">
-        <div className="mx-auto flex h-16 w-full max-w-content items-center justify-between px-6">
-          <p className="font-mono text-label uppercase text-ink">
-            alka<span className="font-semibold">tera</span> LCA Verifier
-          </p>
+      <header className="bg-ink text-on-ink">
+        <div className="mx-auto flex min-h-[52px] w-full max-w-content items-center justify-between gap-4 px-4 py-2 sm:px-6">
+          <span className="flex items-center gap-2">
+            <Mark className="h-5 w-5 text-accent" />
+            <span className="font-display text-[15px] lowercase leading-none">
+              alka<span className="font-bold">tera</span>
+            </span>
+            <span className="font-mono text-label uppercase text-on-ink/60">
+              verifier
+            </span>
+          </span>
           <nav className="flex items-center gap-2">
             <Link
               href="/sign-in"
-              className="rounded-sm px-3 py-2 text-body-sm text-on-surface-muted hover:text-ink"
+              className="rounded-sm px-3 py-2 font-mono text-label uppercase text-on-ink/70 transition-colors duration-150 ease-studio hover:text-on-ink"
             >
               Sign in
             </Link>
             <Link
               href="/sign-up"
-              className="rounded-full bg-accent px-5 py-2 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
+              className="rounded-full bg-accent px-5 py-2 font-mono text-label uppercase text-on-accent transition-colors duration-150 ease-studio hover:bg-accent-hover"
             >
               Get started
             </Link>

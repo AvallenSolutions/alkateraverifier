@@ -2,9 +2,10 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { TrackOnMount } from "@/components/TrackOnMount";
 import { VerificationList } from "@/components/features/VerificationList";
+import { buttonClasses } from "@/components/ui/button";
 import type { VerificationSummary } from "@/types/verification";
 
-export const metadata = { title: "Dashboard — alkatera LCA Verifier" };
+export const metadata = { title: "Dashboard · alkatera verifier" };
 
 /** Verification history (TASK-041, FR-009). */
 export default async function DashboardPage({
@@ -27,7 +28,7 @@ export default async function DashboardPage({
       {signup === "1" ? <TrackOnMount event="signup" /> : null}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="font-mono text-label uppercase text-on-surface-subtle">
+          <p className="font-mono text-label uppercase text-accent-strong">
             Dashboard
           </p>
           <h1 className="mt-2 font-display text-h1 text-ink">
@@ -35,10 +36,7 @@ export default async function DashboardPage({
           </h1>
         </div>
         {items.length > 0 ? (
-          <Link
-            href="/verify"
-            className="rounded-full bg-accent px-6 py-2.5 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
-          >
+          <Link href="/verify" className={buttonClasses("accent")}>
             Verify another
           </Link>
         ) : null}

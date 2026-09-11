@@ -2,17 +2,17 @@ import { TierBadge } from "@/components/features/TierBadge";
 
 const STEPS = [
   {
-    label: "01 — Upload",
+    label: "01 · Upload",
     title: "Any LCA, any platform",
     body: "Drop in the PDF report from your platform or consultant. We read the whole study: boundaries, totals, data quality, allocation, end-of-life.",
   },
   {
-    label: "02 — Choose standards",
+    label: "02 · Choose standards",
     title: "You pick the regime",
     body: "ISO 14040/44, ISO 14067, ISO 14046, GHG Protocol, PAS 2050 and global frameworks. No silent assumptions; we report exactly what we checked.",
   },
   {
-    label: "03 — Read the verdict",
+    label: "03 · Read the verdict",
     title: "A tier, with the working shown",
     body: "A certification band from Not Certified to Platinum, recomputed cross-checks of the report's own arithmetic, and a clause-by-clause findings list you can act on.",
   },
@@ -44,10 +44,10 @@ export function HowItWorks() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-10 flex flex-wrap items-baseline justify-center gap-x-6 gap-y-2">
           {(["not_certified", "bronze", "silver", "gold", "platinum"] as const).map(
             (tier) => (
-              <TierBadge key={tier} tier={tier} />
+              <TierBadge key={tier} tier={tier} size="sm" />
             ),
           )}
         </div>

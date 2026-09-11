@@ -1,12 +1,13 @@
 import Link from "next/link";
+import { buttonClasses } from "@/components/ui/button";
 
 export function Hero() {
   return (
     <section className="px-6 pb-16 pt-20 text-center">
-      <p className="font-mono text-label uppercase text-on-surface-subtle">
+      <p className="font-mono text-label uppercase text-accent-strong">
         Verify the claim, not just the calculation
       </p>
-      <h1 className="mx-auto mt-4 max-w-3xl font-display text-display text-ink">
+      <h1 className="mx-auto mt-4 max-w-4xl font-display text-display text-ink">
         Independent LCA verification that shows its working.
       </h1>
       <p className="mx-auto mt-5 max-w-xl text-body text-on-surface-muted">
@@ -15,20 +16,14 @@ export function Hero() {
         exact standard and clause, in plain English.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Link
-          href="/verify"
-          className="rounded-full bg-accent px-8 py-3 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
-        >
+        <Link href="/verify" className={buttonClasses("accent", "sm:px-8")}>
           Verify your LCA free
         </Link>
-        <Link
-          href="/sign-up"
-          className="rounded-full border border-border-strong bg-surface px-8 py-3 font-mono text-label uppercase text-ink transition-colors hover:bg-surface-sunken"
-        >
+        <Link href="/sign-up" className={buttonClasses("outline", "sm:px-8")}>
           Create an account
         </Link>
       </div>
-      <p className="mt-6 font-mono text-caption text-on-surface-subtle">
+      <p className="mt-6 font-mono text-meta text-on-surface-subtle">
         Independent and platform-agnostic. We will even fail our own reports.
       </p>
     </section>

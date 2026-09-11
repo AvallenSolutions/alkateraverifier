@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { buttonClasses } from "@/components/ui/button";
 import { track } from "@/lib/analytics";
 
 /**
@@ -40,7 +41,7 @@ export function UpgradeCTA({ verificationId }: { verificationId: string }) {
 
   return (
     <section className="rounded-md border border-border bg-surface p-5">
-      <p className="font-mono text-label uppercase text-on-surface-subtle">
+      <p className="font-mono text-label uppercase text-accent-strong">
         Full report &amp; badge
       </p>
       <h2 className="mt-2 font-display text-h2 text-ink">
@@ -55,7 +56,7 @@ export function UpgradeCTA({ verificationId }: { verificationId: string }) {
       {error ? (
         <p
           role="alert"
-          className="mt-3 rounded-sm border-l-[3px] border-error bg-surface-sunken px-3 py-2 text-body-sm text-ink"
+          className="mt-3 rounded-sm border border-border border-l-[3px] border-l-tone-lost-ink bg-surface px-3 py-2 text-body-sm text-ink"
         >
           {error}
         </p>
@@ -64,7 +65,7 @@ export function UpgradeCTA({ verificationId }: { verificationId: string }) {
         type="button"
         onClick={startCheckout}
         disabled={busy}
-        className="mt-4 rounded-full bg-accent px-8 py-3 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover disabled:opacity-40"
+        className={buttonClasses("accent", "mt-4 sm:px-8")}
       >
         {busy ? "Opening checkout…" : "Unlock report & badge"}
       </button>

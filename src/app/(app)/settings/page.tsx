@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Banner } from "@/components/ui/Banner";
+import { buttonClasses } from "@/components/ui/button";
 import { updateProfile } from "./actions";
 
-export const metadata = { title: "Settings — alkatera LCA Verifier" };
+export const metadata = { title: "Settings · alkatera verifier" };
 
 const inputClass =
   "mt-2 w-full rounded-md border border-border bg-surface px-3 py-2.5 text-body text-ink outline-none focus:border-accent-strong focus:ring-1 focus:ring-accent-strong";
@@ -34,7 +35,7 @@ export default async function SettingsPage({
 
   return (
     <div>
-      <p className="font-mono text-label uppercase text-on-surface-subtle">
+      <p className="font-mono text-label uppercase text-accent-strong">
         Settings
       </p>
       <h1 className="mt-2 font-display text-h1 text-ink">Account</h1>
@@ -96,10 +97,7 @@ export default async function SettingsPage({
             className={inputClass}
           />
 
-          <button
-            type="submit"
-            className="mt-5 rounded-full bg-accent px-8 py-2.5 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
-          >
+          <button type="submit" className={buttonClasses("accent", "mt-5 sm:px-8")}>
             Save profile
           </button>
         </form>

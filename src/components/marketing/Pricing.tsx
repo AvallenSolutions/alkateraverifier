@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buttonClasses } from "@/components/ui/button";
 
 export function Pricing() {
   return (
@@ -38,10 +39,7 @@ export function Pricing() {
           </div>
         </div>
         <div className="mt-8 text-center">
-          <Link
-            href="/verify"
-            className="rounded-full bg-accent px-8 py-3 font-mono text-label uppercase text-on-accent transition-colors hover:bg-accent-hover"
-          >
+          <Link href="/verify" className={buttonClasses("accent", "sm:px-8")}>
             Start with the free check
           </Link>
         </div>

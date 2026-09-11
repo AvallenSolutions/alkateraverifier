@@ -1,3 +1,5 @@
+import { PassFail } from "./StateText";
+
 export interface CalcCheckView {
   id: string;
   checkName: string;
@@ -56,22 +58,14 @@ export function CalcChecksTable({ checks }: { checks: CalcCheckView[] }) {
                   </span>
                 ) : null}
               </td>
-              <td className="py-2.5 pr-4 font-mono text-data text-ink">
+              <td className="py-2.5 pr-4 font-mono text-data tabular text-ink">
                 {formatValue(check.reportedValue)}
               </td>
-              <td className="py-2.5 pr-4 font-mono text-data text-ink">
+              <td className="py-2.5 pr-4 font-mono text-data tabular text-ink">
                 {formatValue(check.recomputedValue)}
               </td>
               <td className="py-2.5 pr-4">
-                <span
-                  className={`rounded-full px-3 py-1 font-mono text-label uppercase ${
-                    check.passed
-                      ? "bg-success text-on-success"
-                      : "bg-error text-on-error"
-                  }`}
-                >
-                  {check.passed ? "Pass" : "Fail"}
-                </span>
+                <PassFail passed={check.passed} />
               </td>
             </tr>
           ))}
