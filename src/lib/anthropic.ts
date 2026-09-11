@@ -9,6 +9,9 @@ import { requireEnv } from "@/lib/env";
 export const EXTRACTION_MODEL =
   process.env.CLAUDE_EXTRACTION_MODEL ?? "claude-opus-4-8";
 
+export const EVALUATION_MODEL =
+  process.env.CLAUDE_EVALUATION_MODEL ?? "claude-opus-4-8";
+
 let client: Anthropic | null = null;
 
 export function getAnthropicClient(): Anthropic {
