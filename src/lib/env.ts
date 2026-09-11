@@ -34,6 +34,7 @@ const serverSchema = clientSchema.extend({
   // Phase 3 (TASK-033/034/035): make required when payments land.
   STRIPE_SECRET_KEY: z.string().min(1).optional(),
   STRIPE_WEBHOOK_SECRET: z.string().min(1).optional(),
+  STRIPE_PRICE_ID: z.string().min(1).optional(),
   // Phase 3 (TASK-039): make required when report emails land.
   RESEND_API_KEY: z.string().min(1).optional(),
 });
@@ -57,6 +58,7 @@ const runtimeEnv = {
   ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
   RESEND_API_KEY: process.env.RESEND_API_KEY,
 };
 
